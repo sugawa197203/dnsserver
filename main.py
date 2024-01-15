@@ -1,6 +1,7 @@
 import socket
 import curses.ascii
 import struct
+import time
 
 M_SIZE = 1024
 
@@ -18,7 +19,7 @@ print('create socket')
 sock.bind(locaddr)
 
 class DNSPacketHeader:
-	def __init__(self, packetId:int, queryResponse:bool, opcode:int, authoritativeAnswer, truncation, recursionDesired, recursionAvailable, reserved, authenticData, checkingDisabled, responseCode, questionCount, answerCount, authorityCount, additionalCount):
+	def __init__(self, packetId:int = 0, queryResponse:bool = False, opcode:int = 0, authoritativeAnswer:bool = False, truncation:bool = False, recursionDesired:bool = False, recursionAvailable:bool = False, reserved:bool = False, authenticData:bool = False, checkingDisabled:bool = False, responseCode:int = 0, questionCount:int = 0, answerCount:int = 0, authorityCount:int = 0, additionalCount:int = 0):
 		self.packetId = packetId
 		self.queryResponse = queryResponse
 		self.opcode = opcode
@@ -34,77 +35,142 @@ class DNSPacketHeader:
 		self.answerCount = answerCount
 		self.authorityCount = authorityCount
 		self.additionalCount = additionalCount
+	
+	def __str__(self) -> str:
+		return f'packetId: {self.packetId}, queryResponse: {self.queryResponse}, opcode: {self.opcode}, authoritativeAnswer: {self.authoritativeAnswer}, truncation: {self.truncation}, recursionDesired: {self.recursionDesired}, recursionAvailable: {self.recursionAvailable}, reserved: {self.reserved}, authenticData: {self.authenticData}, checkingDisabled: {self.checkingDisabled}, responseCode: {self.responseCode}, questionCount: {self.questionCount}, answerCount: {self.answerCount}, authorityCount: {self.authorityCount}, additionalCount: {self.additionalCount}'
+	
+	def toBytes(self) -> bytes:
+		flag = 0
+		flag |= (self.queryResponse << 15)
+		flag |= (self.opcode << 11)
+		flag |= (self.authoritativeAnswer << 10)
+		flag |= (self.truncation << 9)
+		flag |= (self.recursionDesired << 8)
+		flag |= (self.recursionAvailable << 7)
+		flag |= (self.reserved << 6)
+		flag |= (self.authenticData << 5)
+		flag |= (self.checkingDisabled << 4)
+		flag |= self.responseCode
 
-# class DNSPacket:
-# 	def __init__(self, header, question, answer, authority, additional):
-# 		self.header = header
-# 		self.question = question
-# 		self.answer = answer
-# 		self.authority = authority
-# 		self.additional = additional
+		return struct.pack('!HHHHHH', self.packetId, flag, self.questionCount, self.answerCount, self.authorityCount, self.additionalCount)
+
+	@staticmethod
+	def fromBytes(data:bytes):
+		header = DNSPacketHeader()
+
+		header.packetId, flag, header.questionCount, header.answerCount, header.authorityCount, header.additionalCount = struct.unpack('!HHHHHH', data)
+		header.queryResponse = (flag & 0b1000000000000000) >> 15 == 1
+		header.opcode = (flag & 0b0111100000000000) >> 11
+		header.authoritativeAnswer = (flag & 0b0000010000000000) >> 10 == 1
+		header.truncation = (flag & 0b0000001000000000) >> 9 == 1
+		header.recursionDesired = (flag & 0b0000000100000000) >> 8 == 1
+		header.recursionAvailable = (flag & 0b0000000010000000) >> 7 == 1
+		header.reserved = (flag & 0b0000000001000000) >> 6 == 1
+		header.authenticData = (flag & 0b0000000000100000) >> 5 == 1
+		header.checkingDisabled = (flag & 0b0000000000010000) >> 4 == 1
+		header.responseCode = (flag & 0b0000000000001111)
+
+		return header
+
+class DNSQuestion:
+	def __init__(self, name:str = "", type:int = 0, class_:int = 0):
+		self.name = name
+		self.type = type
+		self.class_ = class_
+	
+	def __str__(self) -> str:
+		return f'name: {self.name}, type: {self.type}, class: {self.class_}'
+	
+	def toBytes(self) -> bytes:
+		return self.name.encode(encoding='utf-8') + struct.pack('!HH', self.type, self.class_)
+	
+	@staticmethod
+	def fromBytes(data:bytes):
+		name = data[:data.find(b'\x00')]
+		type, class_ = struct.unpack('!HH', data[len(name) + 1:])
+
+		return DNSQuestion(name, type, class_)
+	
+class DNSResourceRecord:
+	def __init__(self, name:str = "", type:int = 0, class_:int = 0, ttl:int = 0, length:int = 0, ip:bytes = b'\x00\x00\x00\x00'):
+		self.name = name
+		self.type = type
+		self.class_ = class_
+		self.ttl = ttl
+		self.length = length
+		self.ip = ip
+	
+	def __str__(self) -> str:
+		return f'name: {self.name}, type: {self.type}, class: {self.class_}, ttl: {self.ttl}, length: {self.length}, ip: {self.ip}'
+	
+	def toBytes(self) -> bytes:
+		return self.name.encode(encoding='utf-8') + struct.pack('!HHIH', self.type, self.class_, self.ttl, self.length) + self.ip
+	
+	@staticmethod
+	def fromBytes(data:bytes):
+		name = data[:data.find(b'\x00')]
+		type, class_, ttl, length = struct.unpack('!HHIH', data[len(name) + 1:])
+		ip = data[len(name) + 1 + 10:len(name) + 1 + 10 + length]
+
+		return DNSResourceRecord(name, type, class_, ttl, length, ip)
+
+class DNSAnswer(DNSResourceRecord):
+	def __init__(self, name:str = "", type:int = 0, class_:int = 0, ttl:int = 0, length:int = 0, ip:bytes = b'\x00\x00\x00\x00'):
+		super().__init__(name, type, class_, ttl, length, ip)
+	
+	@staticmethod
+	def fromResourceRecord(resourceRecord:DNSResourceRecord):
+		return DNSAnswer(resourceRecord.name, resourceRecord.type, resourceRecord.class_, resourceRecord.ttl, resourceRecord.length, resourceRecord.ip)
+	
+class DNSAuthority(DNSResourceRecord):
+	def __init__(self, name:str = "", type:int = 0, class_:int = 0, ttl:int = 0, length:int = 0, ip:bytes = b'\x00\x00\x00\x00'):
+		super().__init__(name, type, class_, ttl, length, ip)
+	
+	@staticmethod
+	def fromResourceRecord(resourceRecord:DNSResourceRecord):
+		return DNSAuthority(resourceRecord.name, resourceRecord.type, resourceRecord.class_, resourceRecord.ttl, resourceRecord.length, resourceRecord.ip)
+	
+class DNSAdditional(DNSResourceRecord):
+	def __init__(self, name:str = "", type:int = 0, class_:int = 0, ttl:int = 0, length:int = 0, ip:bytes = b'\x00\x00\x00\x00'):
+		super().__init__(name, type, class_, ttl, length, ip)
+	
+	@staticmethod
+	def fromResourceRecord(resourceRecord:DNSResourceRecord):
+		return DNSAdditional(resourceRecord.name, resourceRecord.type, resourceRecord.class_, resourceRecord.ttl, resourceRecord.length, resourceRecord.ip)		
+
+class DNSPacket:
+	def __init__(self, header:DNSPacketHeader = None):
+		self.header = header
+		self.question = question
+	
+	@staticmethod
+	def fromBytes(data:bytes):
+		header = DNSPacketHeader.fromBytes(data[:12])
+		question = DNSQuestion.fromBytes(data[12:])
+
+		return DNSPacket(header, question)
 
 while True:
 	try :
-		# ③Clientからのmessageの受付開始
 		print('Waiting message')
-		da
-		ta, cli_addr = sock.recvfrom(M_SIZE)
+		data, cli_addr = sock.recvfrom(M_SIZE)
+		print(f"Received message from {cli_addr} : at {time.time()}")
+
+		print("\nBinary\n")
+		print(data)
+		print()
 
 		# Header
 
-		# # 16 bit
-		# packetId = struct.unpack('!H', data[:2])[0]
-		
-		# # 1 bit request:0 response:1
-		# queryResponse = struct.unpack('!B', data[2:3])[0] >> 7
-		
-		# # 4 bit opcode
-		# opcode = struct.unpack('!B', data[2:3])[0] & 0b01111000
-
-		# # 1 bit authoritative answer
-		# authoritativeAnswer = struct.unpack('!B', data[2:3])[0] & 0b00000100
-
-		# # 1 bit truncation
-		# truncation = struct.unpack('!B', data[2:3])[0] & 0b00000010
-
-		# # 1 bit recursion desired
-		# recursionDesired = struct.unpack('!B', data[2:3])[0] & 0b00000001
-
-		# # 1 bit recursion available
-		# recursionAvailable = struct.unpack('!B', data[3:4])[0] >> 7
-
-		# # 3 bit reserved
-		# reserved = struct.unpack('!B', data[3:4])[0] & 0b01110000
-
-		# # 1 bit authentic data
-		# authenticData = struct.unpack('!B', data[3:4])[0] & 0b00001000
-
-		# # 1 bit checking disabled
-		# checkingDisabled = struct.unpack('!B', data[3:4])[0] & 0b00000100
-
-		# # 4 bit response code
-		# responseCode = struct.unpack('!B', data[3:4])[0] & 0b00000011
-
-		# # 16 bit question count
-		# questionCount = struct.unpack('!H', data[4:6])[0]
-
-		# # 16 bit answer count
-		# answerCount = struct.unpack('!H', data[6:8])[0]
-
-		# # 16 bit authority count
-		# authorityCount = struct.unpack('!H', data[8:10])[0]
-
-		# # 16 bit additional count
-		# additionalCount = struct.unpack('!H', data[10:12])[0]
-
+		print("\nHeader\n")
+		header = DNSPacketHeader.fromBytes(data[:12])
+		print(str(header).replace(', ', '\n'))
+		print()
 
 		# Question
 
-
-
 		print(f'Received message')
 		print("length: ", len(data))
-		print("Heders: ", data[:12])
 		question = data[12:]
 		type = question[-4:-2]
 		class_ = question[-2:]
