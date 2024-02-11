@@ -2,12 +2,7 @@
 #include <string>
 #include <bit>
 #include <byteswap.h>
-
-enum endian
-{
-	big,
-	little
-};
+#include "endian.h"
 
 class BinaryReader
 {

@@ -8,12 +8,41 @@
 #include <iostream>
 #include <byteswap.h>
 #include "binaryreader.cpp"
+#include "binarywriter.cpp"
 #include <regex>
 #include <iomanip>
 #include <ios>
 #include <netdb.h>
+#include <byteswap.h>
 
 #define BUFFER_SIZE 512
+
+enum DNSRecordType
+{
+	A = 1,
+	NS = 2,
+	MD = 3,
+	MF = 4,
+	CNAME = 5,
+	SOA = 6,
+	MB = 7,
+	MG = 8,
+	MR = 9,
+	NULL_ = 10,
+	WKS = 11,
+	PTR = 12,
+	HINFO = 13,
+	MINFO = 14,
+	MX = 15,
+	TXT = 16,
+	AAAA = 28,
+	SRV = 33,
+	OPT = 41,
+	AXFR = 252,
+	MAILB = 253,
+	MAILA = 254,
+	ANY = 255
+};
 
 class DNSHeader
 {
@@ -34,6 +63,16 @@ public:
 		this->ancount = ancount;
 		this->nscount = nscount;
 		this->arcount = arcount;
+	}
+
+	DNSHeader()
+	{
+		id = 0;
+		flags = 0;
+		qdcount = 0;
+		ancount = 0;
+		nscount = 0;
+		arcount = 0;
 	}
 
 	~DNSHeader() {}
@@ -204,13 +243,13 @@ public:
 		std::cout << "ID: " << id << std::endl;
 		std::cout << "Flags: " << std::setfill('0') << std::setw(4) << std::right << std::hex << flags << std::endl;
 		std::cout << "\tQR: " << ((flags & 0x8000) >> 15) << std::endl;
-		std::cout << "\tOpcode: " << ((flags & 0x7800) >> 11) << std::endl;
+		std::cout << "\tOpcode: " << std::setfill('0') << std::setw(4) << std::right << ((flags & 0x7800) >> 11) << std::endl;
 		std::cout << "\tAA: " << ((flags & 0x0400) >> 10) << std::endl;
 		std::cout << "\tTC: " << ((flags & 0x0200) >> 9) << std::endl;
 		std::cout << "\tRD: " << ((flags & 0x0100) >> 8) << std::endl;
 		std::cout << "\tRA: " << ((flags & 0x0080) >> 7) << std::endl;
 		std::cout << "\tZ: " << ((flags & 0x0070) >> 4) << std::endl;
-		std::cout << "\tRCODE: " << (flags & 0x000F) << std::endl;
+		std::cout << "\tRCODE: " << std::setfill('0') << std::setw(4) << std::right << (flags & 0x000F) << std::endl;
 		std::cout << "QDCount: " << qdcount << std::endl;
 		std::cout << "ANCount: " << ancount << std::endl;
 		std::cout << "NSCount: " << nscount << std::endl;
@@ -293,15 +332,69 @@ public:
 	}
 };
 
-class DNSAnswer
+struct Preamble
 {
-private:
 	char *name;
 	uint16_t type;
 	uint16_t class_;
 	uint32_t ttl;
 	uint16_t rdlength;
-	char *rdata;
+};
+
+class DNSAnswer
+{
+private:
+	struct Preamble preamble;
+	uint32_t IP;
+
+public:
+	DNSAnswer()
+	{
+		preamble = {nullptr, 0, 0, 0, 0};
+		IP = 0;
+	}
+
+	~DNSAnswer()
+	{
+	}
+
+	void setPreamble(char *name, uint16_t type, uint16_t class_, uint32_t ttl, uint16_t rdlength)
+	{
+		preamble.name = name;
+		preamble.type = type;
+		preamble.class_ = class_;
+		preamble.ttl = ttl;
+		preamble.rdlength = rdlength;
+	}
+
+	void setIP(uint32_t IP)
+	{
+		this->IP = IP;
+	}
+
+	struct Preamble getPreamble()
+	{
+		return preamble;
+	}
+
+	uint32_t getIP()
+	{
+		return IP;
+	}
+
+	void print()
+	{
+		struct in_addr IP;
+		IP.s_addr = this->IP;
+		std::cout << "---------- DNS Answer ----------" << std::endl;
+		std::cout << "Name: " << preamble.name << std::endl;
+		std::cout << "Type: " << preamble.type << std::endl;
+		std::cout << "Class: " << preamble.class_ << std::endl;
+		std::cout << "TTL: " << preamble.ttl << std::endl;
+		std::cout << "RDLength: " << preamble.rdlength << std::endl;
+		std::cout << "IP: " << inet_ntoa(IP) << std::endl;
+		std::cout << "--------------------------------" << std::endl;
+	}
 };
 
 class DNSAuthority
@@ -401,10 +494,45 @@ public:
 		return additional;
 	}
 
+	void setHeader(DNSHeader *header)
+	{
+		this->header = header;
+	}
+
+	void setQuestion(DNSQuestion *question)
+	{
+		this->question = question;
+	}
+
+	void setAnswer(DNSAnswer *answer)
+	{
+		this->answer = answer;
+	}
+
+	void setAuthority(DNSAuthority *authority)
+	{
+		this->authority = authority;
+	}
+
+	void setAdditional(DNSAdditional *additional)
+	{
+		this->additional = additional;
+	}
+
 	void print()
 	{
-		header->print();
-		question->print();
+		if (header != nullptr)
+			header->print();
+		else
+			std::cout << "Header is null" << std::endl;
+		if (question != nullptr)
+			question->print();
+		else
+			std::cout << "Question is null" << std::endl;
+		if (answer != nullptr)
+			answer->print();
+		else
+			std::cout << "Answer is null" << std::endl;
 	}
 };
 
@@ -464,11 +592,85 @@ public:
 
 		if ((host = gethostbyname(packet->getQuestion()->qNameFormat().c_str())) == NULL)
 		{
+			std::cout << "gethostbyname failed" << std::endl;
+			return;
 		}
 
 		DNSPacket *res = new DNSPacket();
-		DNSHeader header(packet->getHeader()->getID(), 0b1, 0x0001, 0x0001, 0x0000, 0x0000);
+
+		DNSHeader *header = new DNSHeader();
+		header->setID(packet->getHeader()->getID());
+		header->setQR(1);
+		header->setRD(packet->getHeader()->getRD());
+		header->setRA(1);
+		header->setRCODE(0);
+		header->setQDCount(1);
+
+		header->setANCount(1);
+
 		DNSQuestion question = *packet->getQuestion();
+
+		DNSAnswer *answer = new DNSAnswer();
+		answer->setPreamble(
+			host->h_name,
+			DNSRecordType::A,
+			1,
+			8,
+			4);
+		answer->setIP(*((uint32_t *)host->h_addr_list[0]));
+
+		res->setHeader(header);
+		res->setQuestion(&question);
+		res->setAnswer(answer);
+
+		std::cout << "\n----- Response -----" << std::endl;
+		res->print();
+
+		uint8_t *binary = new uint8_t[BUFFER_SIZE];
+		BinaryWriter writer(binary, BUFFER_SIZE, endian::big);
+		std::cout << bswap_16(res->getHeader()->getID()) << std::endl;
+		writer.writeUInt16(res->getHeader()->getID());
+		writer.writeUInt16(res->getHeader()->getFlags());
+		writer.writeUInt16(res->getHeader()->getQDCount());
+		writer.writeUInt16(res->getHeader()->getANCount());
+		writer.writeUInt16(res->getHeader()->getNSCount());
+		writer.writeUInt16(res->getHeader()->getARCount());
+		writer.writeString(res->getQuestion()->getQName());
+		writer.writeUInt16(res->getQuestion()->getQType());
+		writer.writeUInt16(res->getQuestion()->getQClass());
+		writer.writeString(res->getAnswer()->getPreamble().name);
+		writer.writeUInt16(res->getAnswer()->getPreamble().type);
+		writer.writeUInt16(res->getAnswer()->getPreamble().class_);
+		writer.writeUInt32(res->getAnswer()->getPreamble().ttl);
+		writer.writeUInt16(res->getAnswer()->getPreamble().rdlength);
+		writer.writeUInt32(res->getAnswer()->getIP());
+
+		if (sendto(sock, binary, writer.getPosition(), 0, (struct sockaddr *)&addr, addr_len) < 0)
+		{
+			perror("sendto");
+			return;
+		}
+
+		for (int i = 0; i < writer.getPosition(); i++)
+		{
+			printf("%02x ", binary[i]);
+			if (i % 8 == 7)
+			{
+				if (i % 16 == 15)
+				{
+					std::cout << std::endl;
+				}
+				else
+				{
+					std::cout << "  ";
+				}
+			}
+		}
+
+		delete[] binary;
+		delete res;
+
+		std::cout << "\n\nResponse sent" << std::endl;
 	}
 };
 
