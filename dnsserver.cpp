@@ -602,10 +602,8 @@ public:
 		header->setID(packet->getHeader()->getID());
 		header->setQR(1);
 		header->setRD(packet->getHeader()->getRD());
-		header->setRA(1);
-		header->setRCODE(0);
-		header->setQDCount(1);
 
+		header->setQDCount(1);
 		header->setANCount(1);
 
 		DNSQuestion question = *packet->getQuestion();
@@ -615,7 +613,7 @@ public:
 			host->h_name,
 			DNSRecordType::A,
 			1,
-			8,
+			0,
 			4);
 		answer->setIP(*((uint32_t *)host->h_addr_list[0]));
 
@@ -638,12 +636,14 @@ public:
 		writer.writeString(res->getQuestion()->getQName());
 		writer.writeUInt16(res->getQuestion()->getQType());
 		writer.writeUInt16(res->getQuestion()->getQClass());
-		writer.writeString(res->getAnswer()->getPreamble().name);
+		std::string name = "\x06" + std::string(res->getAnswer()->getPreamble().name);
+		name.replace(name.find("."), 1, 1, '\x03');
+		writer.writeString(name);
 		writer.writeUInt16(res->getAnswer()->getPreamble().type);
 		writer.writeUInt16(res->getAnswer()->getPreamble().class_);
 		writer.writeUInt32(res->getAnswer()->getPreamble().ttl);
 		writer.writeUInt16(res->getAnswer()->getPreamble().rdlength);
-		writer.writeUInt32(res->getAnswer()->getIP());
+		writer.writeUInt32(bswap_32(res->getAnswer()->getIP()));
 
 		if (sendto(sock, binary, writer.getPosition(), 0, (struct sockaddr *)&addr, addr_len) < 0)
 		{
