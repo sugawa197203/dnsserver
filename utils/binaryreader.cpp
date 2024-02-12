@@ -2,7 +2,6 @@
 #include <string>
 #include <bit>
 #include <byteswap.h>
-#include "endian.h"
 
 class BinaryReader
 {
@@ -10,7 +9,7 @@ private:
 	uint8_t *head;
 	uint8_t *pos;
 	int length;
-	endian endianness;
+	std::endian endian;
 
 	bool isOutOfBounds()
 	{
@@ -23,12 +22,12 @@ public:
 		return pos == head + length;
 	}
 
-	BinaryReader(uint8_t *head, int length, endian endianness = endian::big)
+	BinaryReader(uint8_t *head, int length, std::endian endian = std::endian::big)
 	{
 		this->head = head;
 		this->pos = head;
 		this->length = length;
-		this->endianness = endianness;
+		this->endian = endian;
 
 		std::cout << "--------------------------------" << std::endl;
 		for (int i = 0; i < length; i++)
@@ -108,7 +107,7 @@ public:
 			pos -= sizeof(uint16_t);
 			throw std::out_of_range("Out of bounds readUInt16");
 		}
-		return endianness == endian::big ? bswap_16(value) : value;
+		return endian == std::endian::big ? bswap_16(value) : value;
 	}
 
 	uint32_t readUInt32()
@@ -124,7 +123,7 @@ public:
 			pos -= sizeof(uint32_t);
 			throw std::out_of_range("Out of bounds readUInt32");
 		}
-		return endianness == endian::big ? bswap_32(value) : value;
+		return endian == std::endian::big ? bswap_32(value) : value;
 	}
 
 	uint64_t readUInt64()
@@ -140,7 +139,7 @@ public:
 			pos -= sizeof(uint64_t);
 			throw std::out_of_range("Out of bounds readUInt64");
 		}
-		return endianness == endian::big ? bswap_64(value) : value;
+		return endian == std::endian::big ? bswap_64(value) : value;
 	}
 
 	std::string readString()

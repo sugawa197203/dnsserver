@@ -7,42 +7,18 @@
 #include <string>
 #include <iostream>
 #include <byteswap.h>
-#include "binaryreader.cpp"
-#include "binarywriter.cpp"
+#include "utils/binaryreader.cpp"
+#include "utils/binarywriter.cpp"
+#include <bit>
 #include <regex>
 #include <iomanip>
 #include <ios>
 #include <netdb.h>
 #include <byteswap.h>
+#include <vector>
+#include "dnspacket.h"
 
 #define BUFFER_SIZE 512
-
-enum DNSRecordType
-{
-	A = 1,
-	NS = 2,
-	MD = 3,
-	MF = 4,
-	CNAME = 5,
-	SOA = 6,
-	MB = 7,
-	MG = 8,
-	MR = 9,
-	NULL_ = 10,
-	WKS = 11,
-	PTR = 12,
-	HINFO = 13,
-	MINFO = 14,
-	MX = 15,
-	TXT = 16,
-	AAAA = 28,
-	SRV = 33,
-	OPT = 41,
-	AXFR = 252,
-	MAILB = 253,
-	MAILA = 254,
-	ANY = 255
-};
 
 class DNSHeader
 {
@@ -332,49 +308,141 @@ public:
 	}
 };
 
-struct Preamble
+class Preamble
 {
-	char *name;
+protected:
+	std::string name;
 	uint16_t type;
 	uint16_t class_;
 	uint32_t ttl;
 	uint16_t rdlength;
+
+public:
+	Preamble()
+	{
+		name = nullptr;
+		type = 0;
+		class_ = 0;
+		ttl = 0;
+		rdlength = 0;
+	}
+
+	Preamble(std::string name, uint16_t type, uint16_t class_, uint32_t ttl, uint16_t rdlength)
+	{
+		this->name = name;
+		this->type = type;
+		this->class_ = class_;
+		this->ttl = ttl;
+		this->rdlength = rdlength;
+	}
+
+	~Preamble()
+	{
+	}
+
+	void setName(std::string name)
+	{
+		this->name = name;
+	}
+
+	std::string getName()
+	{
+		return name;
+	}
+
+	void setType(uint16_t type)
+	{
+		this->type = type;
+	}
+
+	uint16_t getType()
+	{
+		return type;
+	}
+
+	void setClass(uint16_t class_)
+	{
+		this->class_ = class_;
+	}
+
+	uint16_t getClass()
+	{
+		return class_;
+	}
+
+	void setTTL(uint32_t ttl)
+	{
+		this->ttl = ttl;
+	}
+
+	uint32_t getTTL()
+	{
+		return ttl;
+	}
+
+	void setRDLength(uint16_t rdlength)
+	{
+		this->rdlength = rdlength;
+	}
+
+	uint16_t getRDLength()
+	{
+		return rdlength;
+	}
+
+	void print()
+	{
+		std::cout << "Name: " << name << std::endl;
+		std::cout << "Type: " << type << std::endl;
+		std::cout << "Class: " << class_ << std::endl;
+		std::cout << "TTL: " << ttl << std::endl;
+		std::cout << "RDLength: " << rdlength << std::endl;
+	}
 };
 
-class DNSAnswer
+class DNSAnswer : Preamble
 {
 private:
-	struct Preamble preamble;
 	uint32_t IP;
 
 public:
 	DNSAnswer()
 	{
-		preamble = {nullptr, 0, 0, 0, 0};
+		name = nullptr;
+		type = 0;
+		class_ = 0;
+		ttl = 0;
+		rdlength = 0;
 		IP = 0;
+	}
+
+	DNSAnswer(std::string name, uint16_t type, uint16_t class_, uint32_t ttl, uint16_t rdlength, uint32_t IP)
+	{
+		this->name = name;
+		this->type = type;
+		this->class_ = class_;
+		this->ttl = ttl;
+		this->rdlength = rdlength;
+		this->IP = IP;
 	}
 
 	~DNSAnswer()
 	{
 	}
 
-	void setPreamble(char *name, uint16_t type, uint16_t class_, uint32_t ttl, uint16_t rdlength)
+	void setName(std::string name)
 	{
-		preamble.name = name;
-		preamble.type = type;
-		preamble.class_ = class_;
-		preamble.ttl = ttl;
-		preamble.rdlength = rdlength;
+		this->name = name;
+	}
+
+	std::string getName()
+	{
+		return name;
 	}
 
 	void setIP(uint32_t IP)
 	{
 		this->IP = IP;
-	}
-
-	struct Preamble getPreamble()
-	{
-		return preamble;
 	}
 
 	uint32_t getIP()
@@ -387,11 +455,7 @@ public:
 		struct in_addr IP;
 		IP.s_addr = this->IP;
 		std::cout << "---------- DNS Answer ----------" << std::endl;
-		std::cout << "Name: " << preamble.name << std::endl;
-		std::cout << "Type: " << preamble.type << std::endl;
-		std::cout << "Class: " << preamble.class_ << std::endl;
-		std::cout << "TTL: " << preamble.ttl << std::endl;
-		std::cout << "RDLength: " << preamble.rdlength << std::endl;
+		Preamble::print();
 		std::cout << "IP: " << inet_ntoa(IP) << std::endl;
 		std::cout << "--------------------------------" << std::endl;
 	}
@@ -435,7 +499,7 @@ public:
 		answer = nullptr;
 		authority = nullptr;
 
-		BinaryReader reader(binary, length, endian::big);
+		BinaryReader reader(binary, length, std::endian::big);
 		header = new DNSHeader(
 			reader.readUInt16(),
 			reader.readUInt16(),
@@ -534,6 +598,11 @@ public:
 		else
 			std::cout << "Answer is null" << std::endl;
 	}
+
+	// std::vector<DNSAnswer> CreateDNSAnswers()
+	// {
+	// 	std::vector<DNSAnswer> answers;
+	//	}
 };
 
 class DNSServer

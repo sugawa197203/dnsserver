@@ -2,7 +2,6 @@
 #include <string>
 #include <bit>
 #include <byteswap.h>
-#include "endian.h"
 
 class BinaryWriter
 {
@@ -10,15 +9,15 @@ private:
 	uint8_t *head;
 	uint8_t *pos;
 	int length;
-	endian endianness;
+	std::endian endian;
 
 public:
-	BinaryWriter(uint8_t *head, int length, endian endianness = endian::big)
+	BinaryWriter(uint8_t *head, int length, std::endian endian = std::endian::big)
 	{
 		this->head = head;
 		this->pos = head;
 		this->length = length;
-		this->endianness = endianness;
+		this->endian = endian;
 	}
 
 	~BinaryWriter() {}
@@ -31,7 +30,7 @@ public:
 
 	void writeUInt16(uint16_t value)
 	{
-		if (endianness == endian::big)
+		if (endian == std::endian::big)
 		{
 			*pos = (value >> 8) & 0xff;
 			pos++;
@@ -49,7 +48,7 @@ public:
 
 	void writeUInt32(uint32_t value)
 	{
-		if (endianness == endian::big)
+		if (endian == std::endian::big)
 		{
 			*pos = (value >> 24) & 0xff;
 			pos++;
