@@ -1,51 +1,38 @@
 #include <iostream>
-#include <bit>
 
-struct AB
+class A
 {
-	short a = 0xaaaa;
-	int b = 0xbbbbbbbb;
+private:
+	int a;
+
+public:
+	A()
+	{
+		a = 0;
+		std::cout << "A constructor" << std::endl;
+	}
+	~A()
+	{
+		std::cout << "A destructor" << std::endl;
+	}
+	void call(std::string at)
+	{
+		std::cout << "call " << at << std::endl;
+		a++;
+		std::cout << "a = " << a << std::endl;
+	}
 };
 
-struct C : AB
+A *Hoge()
 {
-	int c = 0xcccccccc;
-};
-
-class DEF : C
-{
-	int d = 0xdddddddd;
-	int e = 0xeeeeeeee;
-	int f = 0xffffffff;
-};
-
-void printString(std::string *s)
-{
-	std::cout << *s << std::endl;
-}
-
-std::string *hoge(std::string s)
-{
-	std::string ss = s;
-	printString(&ss);
-	return &ss;
+	A a;
+	a.call("Hoge");
+	return &a;
 }
 
 int main()
 {
-	std::cout << __cplusplus << std::endl;
-	DEF def;
-	void *ptr = &def;
-	for (int i = 0; i < sizeof(DEF); i++)
-	{
-		printf("%02X ", ((unsigned char *)ptr)[i]);
-	}
-
-	puts("");
-	std::string local = "hoge";
-	std::string *p = hoge(local);
-	using namespace std;
-	cout << p << endl;
-	printString(p);
+	A *a = Hoge();
+	a->call("main");
 	return 0;
 }
