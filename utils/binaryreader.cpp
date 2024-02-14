@@ -2,159 +2,150 @@
 #include <string>
 #include <bit>
 #include <byteswap.h>
+#include "binaryreader.hpp"
 
-class BinaryReader
+bool BinaryReader::isOutOfBounds()
 {
-private:
-	uint8_t *head;
-	uint8_t *pos;
-	int length;
-	std::endian endian;
+	return pos > head + length;
+}
 
-	bool isOutOfBounds()
+bool BinaryReader::isEOF()
+{
+	return pos == head + length;
+}
+
+BinaryReader::BinaryReader(uint8_t *head, int length, std::endian endian = std::endian::big)
+{
+	this->head = head;
+	this->pos = head;
+	this->length = length;
+	this->endian = endian;
+
+	std::cout << "--------------------------------" << std::endl;
+	for (int i = 0; i < length; i++)
 	{
-		return pos > head + length;
-	}
-
-public:
-	bool isEOF()
-	{
-		return pos == head + length;
-	}
-
-	BinaryReader(uint8_t *head, int length, std::endian endian = std::endian::big)
-	{
-		this->head = head;
-		this->pos = head;
-		this->length = length;
-		this->endian = endian;
-
-		std::cout << "--------------------------------" << std::endl;
-		for (int i = 0; i < length; i++)
+		printf("%02x ", head[i]);
+		if (i % 8 == 7)
 		{
-			printf("%02x ", head[i]);
-			if (i % 8 == 7)
+			if (i % 16 == 15)
 			{
-				if (i % 16 == 15)
-				{
-					std::cout << std::endl;
-				}
-				else
-				{
-					std::cout << "  ";
-				}
+				std::cout << std::endl;
+			}
+			else
+			{
+				std::cout << "  ";
 			}
 		}
-		std::cout << "\n--------------------------------" << std::endl;
 	}
+	std::cout << "\n--------------------------------" << std::endl;
+}
 
-	~BinaryReader() {}
+BinaryReader::~BinaryReader() {}
 
-	int getLength()
+int BinaryReader::getLength()
+{
+	return length;
+}
+
+int BinaryReader::getPosition()
+{
+	return pos - head;
+}
+
+template <typename T>
+T BinaryReader::read()
+{
+	if (isEOF())
 	{
-		return length;
+		throw std::out_of_range("End of file");
 	}
 
-	int getPosition()
+	T value = *reinterpret_cast<T *>(pos);
+	pos += sizeof(T);
+	if (isOutOfBounds())
 	{
-		return pos - head;
+		pos -= sizeof(T);
+		throw std::out_of_range("Out of bounds");
 	}
+	return value;
+}
 
-	template <typename T>
-	T read()
+uint8_t BinaryReader::readUInt8()
+{
+	if (isEOF())
 	{
-		if (isEOF())
-		{
-			throw std::out_of_range("End of file");
-		}
-
-		T value = *reinterpret_cast<T *>(pos);
-		pos += sizeof(T);
-		if (isOutOfBounds())
-		{
-			pos -= sizeof(T);
-			throw std::out_of_range("Out of bounds");
-		}
-		return value;
+		throw std::out_of_range("End of file");
 	}
-
-	uint8_t readUInt8()
+	uint8_t value = *reinterpret_cast<uint8_t *>(pos);
+	pos += sizeof(uint8_t);
+	if (isOutOfBounds())
 	{
-		if (isEOF())
-		{
-			throw std::out_of_range("End of file");
-		}
-		uint8_t value = *reinterpret_cast<uint8_t *>(pos);
-		pos += sizeof(uint8_t);
-		if (isOutOfBounds())
-		{
-			pos -= sizeof(uint8_t);
-			throw std::out_of_range("Out of bounds readUInt8");
-		}
-		return value;
+		pos -= sizeof(uint8_t);
+		throw std::out_of_range("Out of bounds readUInt8");
 	}
+	return value;
+}
 
-	uint16_t readUInt16()
+uint16_t BinaryReader::readUInt16()
+{
+	if (isEOF())
 	{
-		if (isEOF())
-		{
-			throw std::out_of_range("End of file");
-		}
-		uint16_t value = *reinterpret_cast<uint16_t *>(pos);
-		pos += sizeof(uint16_t);
-		if (isOutOfBounds())
-		{
-			pos -= sizeof(uint16_t);
-			throw std::out_of_range("Out of bounds readUInt16");
-		}
-		return endian == std::endian::big ? bswap_16(value) : value;
+		throw std::out_of_range("End of file");
 	}
+	uint16_t value = *reinterpret_cast<uint16_t *>(pos);
+	pos += sizeof(uint16_t);
+	if (isOutOfBounds())
+	{
+		pos -= sizeof(uint16_t);
+		throw std::out_of_range("Out of bounds readUInt16");
+	}
+	return endian == std::endian::big ? bswap_16(value) : value;
+}
 
-	uint32_t readUInt32()
+uint32_t BinaryReader::readUInt32()
+{
+	if (isEOF())
 	{
-		if (isEOF())
-		{
-			throw std::out_of_range("End of file");
-		}
-		uint32_t value = *reinterpret_cast<uint32_t *>(pos);
-		pos += sizeof(uint32_t);
-		if (isOutOfBounds())
-		{
-			pos -= sizeof(uint32_t);
-			throw std::out_of_range("Out of bounds readUInt32");
-		}
-		return endian == std::endian::big ? bswap_32(value) : value;
+		throw std::out_of_range("End of file");
 	}
+	uint32_t value = *reinterpret_cast<uint32_t *>(pos);
+	pos += sizeof(uint32_t);
+	if (isOutOfBounds())
+	{
+		pos -= sizeof(uint32_t);
+		throw std::out_of_range("Out of bounds readUInt32");
+	}
+	return endian == std::endian::big ? bswap_32(value) : value;
+}
 
-	uint64_t readUInt64()
+uint64_t BinaryReader::readUInt64()
+{
+	if (isEOF())
 	{
-		if (isEOF())
-		{
-			throw std::out_of_range("End of file");
-		}
-		uint64_t value = *reinterpret_cast<uint64_t *>(pos);
-		pos += sizeof(uint64_t);
-		if (isOutOfBounds())
-		{
-			pos -= sizeof(uint64_t);
-			throw std::out_of_range("Out of bounds readUInt64");
-		}
-		return endian == std::endian::big ? bswap_64(value) : value;
+		throw std::out_of_range("End of file");
 	}
+	uint64_t value = *reinterpret_cast<uint64_t *>(pos);
+	pos += sizeof(uint64_t);
+	if (isOutOfBounds())
+	{
+		pos -= sizeof(uint64_t);
+		throw std::out_of_range("Out of bounds readUInt64");
+	}
+	return endian == std::endian::big ? bswap_64(value) : value;
+}
 
-	std::string readString()
+std::string BinaryReader::readString()
+{
+	if (isEOF())
 	{
-		if (isEOF())
-		{
-			throw std::out_of_range("End of file");
-		}
-		std::string value = (char *)pos;
-		pos += value.length() + 1;
-		if (isOutOfBounds())
-		{
-			pos -= value.length() + 1;
-			throw std::out_of_range("Out of bounds readString");
-		}
-		return value;
+		throw std::out_of_range("End of file");
 	}
-};
+	std::string value = (char *)pos;
+	pos += value.length() + 1;
+	if (isOutOfBounds())
+	{
+		pos -= value.length() + 1;
+		throw std::out_of_range("Out of bounds readString");
+	}
+	return value;
+}
