@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/dnsserver.dir/dnsserver.cpp.o CMakeFiles/dnsserver.dir/records/records.cpp.o CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.o -o dnsserver 
