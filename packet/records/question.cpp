@@ -13,36 +13,6 @@ Question::~Question()
 {
 }
 
-void Question::setQName(char *qname)
-{
-	this->qname = qname;
-}
-
-void Question::setQType(uint16_t qtype)
-{
-	this->qtype = qtype;
-}
-
-void Question::setQClass(uint16_t qclass)
-{
-	this->qclass = qclass;
-}
-
-std::string Question::getQName()
-{
-	return qname;
-}
-
-uint16_t Question::getQType()
-{
-	return qtype;
-}
-
-uint16_t Question::getQClass()
-{
-	return qclass;
-}
-
 std::string Question::qNameFormat()
 {
 	std::string result = qname;

@@ -4,6 +4,8 @@ private:
 	int a;
 
 public:
-	inline int getA();
-	inline void setA(int a);
+	int getA();
+	void setA(int a);
+	A(int n);
+	~A();
 };

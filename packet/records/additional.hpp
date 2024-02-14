@@ -3,8 +3,8 @@
 #include <bits/stdint-uintn.h>
 #include "preamble.hpp"
 
-class Additional : Preamble
+class Additional : public Preamble
 {
-private:
+public:
 	uint32_t IP;
 };

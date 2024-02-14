@@ -2,9 +2,9 @@
 
 #include <bits/stdint-uintn.h>
 
-class DNSHeader
+class Header
 {
-private:
+public:
 	uint16_t id;
 	uint16_t flags;
 	uint16_t qdcount;
@@ -12,36 +12,11 @@ private:
 	uint16_t nscount;
 	uint16_t arcount;
 
-public:
-	DNSHeader(uint16_t id, uint16_t flags, uint16_t qdcount, uint16_t ancount, uint16_t nscount, uint16_t arcount);
+	Header(uint16_t id, uint16_t flags, uint16_t qdcount, uint16_t ancount, uint16_t nscount, uint16_t arcount);
 
-	DNSHeader();
+	Header();
 
-	~DNSHeader();
-
-	void setID(uint16_t id);
-
-	void setFlags(uint16_t flags);
-
-	void setQDCount(uint16_t qdcount);
-
-	void setANCount(uint16_t ancount);
-
-	void setNSCount(uint16_t nscount);
-
-	void setARCount(uint16_t arcount);
-
-	uint16_t getID();
-
-	uint16_t getFlags();
-
-	uint16_t getQDCount();
-
-	uint16_t getANCount();
-
-	uint16_t getNSCount();
-
-	uint16_t getARCount();
+	~Header();
 
 	bool getQR();
 

@@ -25,56 +25,6 @@ Preamble::~Preamble()
 {
 }
 
-void Preamble::setName(std::string name)
-{
-	this->name = name;
-}
-
-std::string Preamble::getName()
-{
-	return name;
-}
-
-void Preamble::setType(uint16_t type)
-{
-	this->type = type;
-}
-
-uint16_t Preamble::getType()
-{
-	return type;
-}
-
-void Preamble::setClass(uint16_t class_)
-{
-	this->class_ = class_;
-}
-
-uint16_t Preamble::getClass()
-{
-	return class_;
-}
-
-void Preamble::setTTL(uint32_t ttl)
-{
-	this->ttl = ttl;
-}
-
-uint32_t Preamble::getTTL()
-{
-	return ttl;
-}
-
-void Preamble::setRDLength(uint16_t rdlength)
-{
-	this->rdlength = rdlength;
-}
-
-uint16_t Preamble::getRDLength()
-{
-	return rdlength;
-}
-
 void Preamble::print()
 {
 	std::cout << "Name: " << name << std::endl;
