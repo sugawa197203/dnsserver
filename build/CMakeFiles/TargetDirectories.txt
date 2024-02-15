@@ -1,0 +1,3 @@
+/mnt/c/Users/bismu/Projects/dnsserver/build/CMakeFiles/dnsserver.dir
+/mnt/c/Users/bismu/Projects/dnsserver/build/CMakeFiles/edit_cache.dir
+/mnt/c/Users/bismu/Projects/dnsserver/build/CMakeFiles/rebuild_cache.dir

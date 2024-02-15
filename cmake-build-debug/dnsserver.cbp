@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="dnsserver"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dnsserver">
+				<Option output="/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/dnsserver" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 dnsserver"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="dnsserver/fast">
+				<Option output="/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/dnsserver" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/11"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
+					<Add directory="/usr/include/c++/11/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 dnsserver/fast"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/dnsserver.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacket.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacket.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/additional.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/additional.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/utils/binaryreader.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/utils/binaryreader.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/utils/binarywriter.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/utils/binarywriter.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
