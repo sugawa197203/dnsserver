@@ -20,24 +20,6 @@ BinaryReader::BinaryReader(uint8_t *head, int length, std::endian endian = std::
 	this->pos = head;
 	this->length = length;
 	this->endian = endian;
-
-	std::cout << "--------------------------------" << std::endl;
-	for (int i = 0; i < length; i++)
-	{
-		printf("%02x ", head[i]);
-		if (i % 8 == 7)
-		{
-			if (i % 16 == 15)
-			{
-				std::cout << std::endl;
-			}
-			else
-			{
-				std::cout << "  ";
-			}
-		}
-	}
-	std::cout << "\n--------------------------------" << std::endl;
 }
 
 BinaryReader::~BinaryReader() {}

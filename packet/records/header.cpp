@@ -1,5 +1,3 @@
-#pragma once
-
 #include "header.hpp"
 #include <iostream>
 #include <iomanip>

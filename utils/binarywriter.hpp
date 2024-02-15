@@ -14,7 +14,7 @@ private:
 	std::endian endian;
 
 public:
-	BinaryWriter(uint8_t *head, int length, std::endian endian = std::endian::big);
+	BinaryWriter(uint8_t *head, int length, std::endian endian);
 
 	~BinaryWriter();
 

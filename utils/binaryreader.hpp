@@ -13,15 +13,12 @@ private:
 	int length;
 	std::endian endian;
 
-	bool isOutOfBounds()
-	{
-		return pos > head + length;
-	}
+	bool isOutOfBounds();
 
 public:
 	bool isEOF();
 
-	BinaryReader(uint8_t *head, int length, std::endian endian = std::endian::big);
+	BinaryReader(uint8_t *head, int length, std::endian endian);
 
 	~BinaryReader();
 

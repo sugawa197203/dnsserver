@@ -153,29 +153,173 @@ dnsserver.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/dnsserver.cpp.s
 .PHONY : dnsserver.cpp.s
 
-records/records.o: records/records.cpp.o
-.PHONY : records/records.o
+packet/dnspacket.o: packet/dnspacket.cpp.o
+.PHONY : packet/dnspacket.o
 
 # target to build an object file
-records/records.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/records/records.cpp.o
-.PHONY : records/records.cpp.o
+packet/dnspacket.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o
+.PHONY : packet/dnspacket.cpp.o
 
-records/records.i: records/records.cpp.i
-.PHONY : records/records.i
+packet/dnspacket.i: packet/dnspacket.cpp.i
+.PHONY : packet/dnspacket.i
 
 # target to preprocess a source file
-records/records.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/records/records.cpp.i
-.PHONY : records/records.cpp.i
+packet/dnspacket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.i
+.PHONY : packet/dnspacket.cpp.i
 
-records/records.s: records/records.cpp.s
-.PHONY : records/records.s
+packet/dnspacket.s: packet/dnspacket.cpp.s
+.PHONY : packet/dnspacket.s
 
 # target to generate assembly for a file
-records/records.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/records/records.cpp.s
-.PHONY : records/records.cpp.s
+packet/dnspacket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.s
+.PHONY : packet/dnspacket.cpp.s
+
+packet/records/additional.o: packet/records/additional.cpp.o
+.PHONY : packet/records/additional.o
+
+# target to build an object file
+packet/records/additional.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/additional.cpp.o
+.PHONY : packet/records/additional.cpp.o
+
+packet/records/additional.i: packet/records/additional.cpp.i
+.PHONY : packet/records/additional.i
+
+# target to preprocess a source file
+packet/records/additional.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/additional.cpp.i
+.PHONY : packet/records/additional.cpp.i
+
+packet/records/additional.s: packet/records/additional.cpp.s
+.PHONY : packet/records/additional.s
+
+# target to generate assembly for a file
+packet/records/additional.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/additional.cpp.s
+.PHONY : packet/records/additional.cpp.s
+
+packet/records/answer.o: packet/records/answer.cpp.o
+.PHONY : packet/records/answer.o
+
+# target to build an object file
+packet/records/answer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o
+.PHONY : packet/records/answer.cpp.o
+
+packet/records/answer.i: packet/records/answer.cpp.i
+.PHONY : packet/records/answer.i
+
+# target to preprocess a source file
+packet/records/answer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer.cpp.i
+.PHONY : packet/records/answer.cpp.i
+
+packet/records/answer.s: packet/records/answer.cpp.s
+.PHONY : packet/records/answer.s
+
+# target to generate assembly for a file
+packet/records/answer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer.cpp.s
+.PHONY : packet/records/answer.cpp.s
+
+packet/records/authority.o: packet/records/authority.cpp.o
+.PHONY : packet/records/authority.o
+
+# target to build an object file
+packet/records/authority.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/authority.cpp.o
+.PHONY : packet/records/authority.cpp.o
+
+packet/records/authority.i: packet/records/authority.cpp.i
+.PHONY : packet/records/authority.i
+
+# target to preprocess a source file
+packet/records/authority.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/authority.cpp.i
+.PHONY : packet/records/authority.cpp.i
+
+packet/records/authority.s: packet/records/authority.cpp.s
+.PHONY : packet/records/authority.s
+
+# target to generate assembly for a file
+packet/records/authority.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/authority.cpp.s
+.PHONY : packet/records/authority.cpp.s
+
+packet/records/header.o: packet/records/header.cpp.o
+.PHONY : packet/records/header.o
+
+# target to build an object file
+packet/records/header.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/header.cpp.o
+.PHONY : packet/records/header.cpp.o
+
+packet/records/header.i: packet/records/header.cpp.i
+.PHONY : packet/records/header.i
+
+# target to preprocess a source file
+packet/records/header.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/header.cpp.i
+.PHONY : packet/records/header.cpp.i
+
+packet/records/header.s: packet/records/header.cpp.s
+.PHONY : packet/records/header.s
+
+# target to generate assembly for a file
+packet/records/header.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/header.cpp.s
+.PHONY : packet/records/header.cpp.s
+
+packet/records/preamble.o: packet/records/preamble.cpp.o
+.PHONY : packet/records/preamble.o
+
+# target to build an object file
+packet/records/preamble.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o
+.PHONY : packet/records/preamble.cpp.o
+
+packet/records/preamble.i: packet/records/preamble.cpp.i
+.PHONY : packet/records/preamble.i
+
+# target to preprocess a source file
+packet/records/preamble.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.i
+.PHONY : packet/records/preamble.cpp.i
+
+packet/records/preamble.s: packet/records/preamble.cpp.s
+.PHONY : packet/records/preamble.s
+
+# target to generate assembly for a file
+packet/records/preamble.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.s
+.PHONY : packet/records/preamble.cpp.s
+
+packet/records/question.o: packet/records/question.cpp.o
+.PHONY : packet/records/question.o
+
+# target to build an object file
+packet/records/question.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/question.cpp.o
+.PHONY : packet/records/question.cpp.o
+
+packet/records/question.i: packet/records/question.cpp.i
+.PHONY : packet/records/question.i
+
+# target to preprocess a source file
+packet/records/question.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/question.cpp.i
+.PHONY : packet/records/question.cpp.i
+
+packet/records/question.s: packet/records/question.cpp.s
+.PHONY : packet/records/question.s
+
+# target to generate assembly for a file
+packet/records/question.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/question.cpp.s
+.PHONY : packet/records/question.cpp.s
 
 utils/binaryreader.o: utils/binaryreader.cpp.o
 .PHONY : utils/binaryreader.o
@@ -237,9 +381,27 @@ help:
 	@echo "... dnsserver.o"
 	@echo "... dnsserver.i"
 	@echo "... dnsserver.s"
-	@echo "... records/records.o"
-	@echo "... records/records.i"
-	@echo "... records/records.s"
+	@echo "... packet/dnspacket.o"
+	@echo "... packet/dnspacket.i"
+	@echo "... packet/dnspacket.s"
+	@echo "... packet/records/additional.o"
+	@echo "... packet/records/additional.i"
+	@echo "... packet/records/additional.s"
+	@echo "... packet/records/answer.o"
+	@echo "... packet/records/answer.i"
+	@echo "... packet/records/answer.s"
+	@echo "... packet/records/authority.o"
+	@echo "... packet/records/authority.i"
+	@echo "... packet/records/authority.s"
+	@echo "... packet/records/header.o"
+	@echo "... packet/records/header.i"
+	@echo "... packet/records/header.s"
+	@echo "... packet/records/preamble.o"
+	@echo "... packet/records/preamble.i"
+	@echo "... packet/records/preamble.s"
+	@echo "... packet/records/question.o"
+	@echo "... packet/records/question.i"
+	@echo "... packet/records/question.s"
 	@echo "... utils/binaryreader.o"
 	@echo "... utils/binaryreader.i"
 	@echo "... utils/binaryreader.s"

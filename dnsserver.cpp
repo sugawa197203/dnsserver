@@ -7,9 +7,9 @@
 #include <string>
 #include <iostream>
 #include <byteswap.h>
-#include "utils/binaryreader.cpp"
-#include "utils/binarywriter.cpp"
-#include "packet/dnspacket.cpp"
+#include "utils/binaryreader.hpp"
+#include "utils/binarywriter.hpp"
+#include "packet/dnspacket.hpp"
 #include "packet/dnspacketutil.hpp"
 #include <bit>
 #include <regex>
@@ -37,6 +37,7 @@ void printBinary(uint8_t *binary, int length)
 			}
 		}
 	}
+	std::cout << std::endl;
 }
 
 class DNSServer
@@ -47,17 +48,18 @@ private:
 	struct sockaddr_in addr;
 	socklen_t addr_len = sizeof(struct sockaddr_in);
 
-	std::list<std::unique_ptr<hostent>> getHost(std::shared_ptr<DNSPacket> packet)
+	std::list<std::shared_ptr<hostent>> getHost(std::shared_ptr<DNSPacket> packet)
 	{
-		std::list<std::unique_ptr<hostent>> hosts;
+		std::list<std::shared_ptr<hostent>> hosts;
 		struct hostent *host;
 
 		for (Question &question : packet->questions)
 		{
 			if ((host = gethostbyname(question.qNameFormat().c_str())) == NULL)
 			{
-				std::cout << "gethostbyname failed" << std::endl;
-				return;
+				perror("gethostbyname");
+				fprintf(stderr, "\tqName : %s\n", question.qNameFormat().c_str());
+				abort();
 			}
 
 			hosts.push_back(std::make_unique<hostent>(*host));
@@ -106,18 +108,21 @@ public:
 		if ((len = recvfrom(sock, buf, sizeof(buf) - 1, 0, (struct sockaddr *)&addr, &addr_len)) < 0)
 		{
 			perror("recvfrom");
-			return;
+			abort();
 		}
 
 		packet->fromBinary(buf, len);
+		std::cout << "---------- received ----------" << std::endl;
+		printBinary(buf, len);
 		packet->print();
+		std::cout << "---------- end received ----------" << std::endl;
 
 		return packet;
 	}
 
-	void res(std::shared_ptr<DNSPacket> packet)
+	void res(const std::shared_ptr<DNSPacket>& packet)
 	{
-		std::list<std::unique_ptr<hostent>> hosts = getHost(packet);
+		std::list<std::shared_ptr<hostent>> hosts = getHost(packet);
 
 		DNSPacket res;
 		res.header = packet->header;
@@ -129,20 +134,17 @@ public:
 
 		res.questions = packet->questions;
 
-		for (std::unique_ptr<hostent> &host : hosts)
+		for (std::shared_ptr<hostent> &host : hosts)
 		{
-			res.answers.push_back(Answer(
-				host->h_name,
-				DNSRecordType::A,
-				1,
-				0,
-				4,
-				*((uint32_t *)host->h_addr_list[0])));
+			std::string name = host->h_name;
+			uint32_t ip = *((uint32_t *)host->h_addr_list[0]);
+			Answer answer(name, 1, 1, 0, 4, ip);
+			res.answers.push_back(answer);
 		}
 
 		res.print();
 
-		std::array<uint8_t, 1024> binary;
+		std::array<uint8_t, 1024> binary{};
 		int length = res.toBinary(binary.data(), binary.size());
 
 		if (sendto(sock, binary.data(), length, 0, (struct sockaddr *)&addr, addr_len) < 0)
@@ -157,11 +159,12 @@ public:
 
 int main()
 {
-	DNSServer server;
+	DNSServer server(25565);
 	std::cout << "---------- Server started ----------" << std::endl;
 	std::shared_ptr<DNSPacket> packet = server.receivePacket();
 
-	std::cout << "---------- Received packet ----------" << std::endl;
+	std::cout << "#################### Received packet ####################" << std::endl;
+
 	server.res(packet);
 
 	return 0;

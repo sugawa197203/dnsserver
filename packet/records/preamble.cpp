@@ -5,11 +5,6 @@
 
 Preamble::Preamble()
 {
-	name = nullptr;
-	type = 0;
-	class_ = 0;
-	ttl = 0;
-	rdlength = 0;
 }
 
 Preamble::Preamble(std::string name, uint16_t type, uint16_t class_, uint32_t ttl, uint16_t rdlength)
