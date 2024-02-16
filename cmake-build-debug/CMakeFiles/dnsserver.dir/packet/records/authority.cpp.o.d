@@ -14,6 +14,7 @@ CMakeFiles/dnsserver.dir/packet/records/authority.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
+ /mnt/c/Users/bismu/Projects/dnsserver/packet/records/../dnspacketutil.hpp \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

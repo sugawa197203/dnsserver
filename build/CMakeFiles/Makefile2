@@ -34,7 +34,7 @@ $(VERBOSE)MAKESILENT = -s
 #Suppress display of executed commands.
 $(VERBOSE).SILENT:
 
-# A target that is always out of date.
+# ARecord target that is always out of date.
 cmake_force:
 .PHONY : cmake_force
 

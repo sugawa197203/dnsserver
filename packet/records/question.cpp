@@ -2,7 +2,7 @@
 
 #include <regex>
 
-Question::Question(std::string qname, uint16_t qtype, uint16_t qclass)
+Question::Question(std::string qname, DNSRecordType qtype, uint16_t qclass)
 {
 	this->qname = qname;
 	this->qtype = qtype;

@@ -14,6 +14,7 @@ CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o: \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
+ /mnt/c/Users/bismu/Projects/dnsserver/packet/records/../dnspacketutil.hpp \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -161,8 +162,11 @@ CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/arpa/inet.h \
- /usr/include/netinet/in.h /usr/include/x86_64-linux-gnu/sys/socket.h \
+ /usr/include/c++/11/bits/istream.tcc \
+ /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.hpp \
+ /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.hpp \
+ /usr/include/arpa/inet.h /usr/include/netinet/in.h \
+ /usr/include/x86_64-linux-gnu/sys/socket.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
  /usr/include/x86_64-linux-gnu/bits/socket.h \
  /usr/include/x86_64-linux-gnu/bits/socket_type.h \

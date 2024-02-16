@@ -88,29 +88,29 @@ namespace headerflag
 	};
 }
 
-enum DNSRecordType
+enum DNSRecordType : uint16_t
 {
-	A = 1,
-	NS = 2,
-	MD = 3,
-	MF = 4,
-	CNAME = 5,
-	SOA = 6,
-	MB = 7,
-	MG = 8,
-	MR = 9,
-	NULL_ = 10,
-	WKS = 11,
-	PTR = 12,
-	HINFO = 13,
-	MINFO = 14,
-	MX = 15,
-	TXT = 16,
-	AAAA = 28,
-	SRV = 33,
-	OPT = 41,
-	AXFR = 252,
-	MAILB = 253,
-	MAILA = 254,
-	ANY = 255
+	A = 0x0001,
+	NS = 0x0002,
+	MD = 0x0003,
+	MF = 0x0004,
+	CNAME = 0x0005,
+	SOA = 0x0006,
+	MB = 0x0007,
+	MG = 0x0008,
+	MR = 0x0009,
+	NULL_ = 0x000a,
+	WKS = 0x000b,
+	PTR = 0x000c,
+	HINFO = 0x000d,
+	MINFO = 0x000e,
+	MX = 0x000f,
+	TXT = 0x0010,
+	AAAA = 0x001c,
+	SRV = 0x0021,
+	OPT = 0x0029,
+	AXFR = 0x00fc,
+	MAILB = 0x00fd,
+	MAILA = 0x00fe,
+	ANY = 0x00ff
 };

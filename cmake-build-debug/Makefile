@@ -225,6 +225,54 @@ packet/records/answer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer.cpp.s
 .PHONY : packet/records/answer.cpp.s
 
+packet/records/answer/aaaarecord.o: packet/records/answer/aaaarecord.cpp.o
+.PHONY : packet/records/answer/aaaarecord.o
+
+# target to build an object file
+packet/records/answer/aaaarecord.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o
+.PHONY : packet/records/answer/aaaarecord.cpp.o
+
+packet/records/answer/aaaarecord.i: packet/records/answer/aaaarecord.cpp.i
+.PHONY : packet/records/answer/aaaarecord.i
+
+# target to preprocess a source file
+packet/records/answer/aaaarecord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.i
+.PHONY : packet/records/answer/aaaarecord.cpp.i
+
+packet/records/answer/aaaarecord.s: packet/records/answer/aaaarecord.cpp.s
+.PHONY : packet/records/answer/aaaarecord.s
+
+# target to generate assembly for a file
+packet/records/answer/aaaarecord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.s
+.PHONY : packet/records/answer/aaaarecord.cpp.s
+
+packet/records/answer/arecord.o: packet/records/answer/arecord.cpp.o
+.PHONY : packet/records/answer/arecord.o
+
+# target to build an object file
+packet/records/answer/arecord.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o
+.PHONY : packet/records/answer/arecord.cpp.o
+
+packet/records/answer/arecord.i: packet/records/answer/arecord.cpp.i
+.PHONY : packet/records/answer/arecord.i
+
+# target to preprocess a source file
+packet/records/answer/arecord.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.i
+.PHONY : packet/records/answer/arecord.cpp.i
+
+packet/records/answer/arecord.s: packet/records/answer/arecord.cpp.s
+.PHONY : packet/records/answer/arecord.s
+
+# target to generate assembly for a file
+packet/records/answer/arecord.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.s
+.PHONY : packet/records/answer/arecord.cpp.s
+
 packet/records/authority.o: packet/records/authority.cpp.o
 .PHONY : packet/records/authority.o
 
@@ -390,6 +438,12 @@ help:
 	@echo "... packet/records/answer.o"
 	@echo "... packet/records/answer.i"
 	@echo "... packet/records/answer.s"
+	@echo "... packet/records/answer/aaaarecord.o"
+	@echo "... packet/records/answer/aaaarecord.i"
+	@echo "... packet/records/answer/aaaarecord.s"
+	@echo "... packet/records/answer/arecord.o"
+	@echo "... packet/records/answer/arecord.i"
+	@echo "... packet/records/answer/arecord.s"
 	@echo "... packet/records/authority.o"
 	@echo "... packet/records/authority.i"
 	@echo "... packet/records/authority.s"

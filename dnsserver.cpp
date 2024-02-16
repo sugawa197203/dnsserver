@@ -138,7 +138,7 @@ public:
 		{
 			std::string name = host->h_name;
 			uint32_t ip = *((uint32_t *)host->h_addr_list[0]);
-			Answer answer(name, 1, 1, 0, 4, ip);
+			Answer answer = Answer::getAnswer(name, DNSRecordType::A, 1, 0, 4, (uint8_t *)&ip);
 			res.answers.push_back(answer);
 		}
 

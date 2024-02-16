@@ -189,8 +189,11 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacket.hpp \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.hpp \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.hpp \
+ /mnt/c/Users/bismu/Projects/dnsserver/packet/records/../dnspacketutil.hpp \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.hpp \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
+ /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.hpp \
+ /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.hpp \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.hpp \
  /mnt/c/Users/bismu/Projects/dnsserver/packet/records/additional.hpp \
  /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
@@ -230,10 +233,8 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /usr/include/c++/11/bits/stream_iterator.h \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
- /usr/include/c++/11/pstl/execution_defs.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacketutil.hpp \
- /usr/include/c++/11/regex /usr/include/c++/11/algorithm \
- /usr/include/c++/11/bits/ranges_algo.h \
+ /usr/include/c++/11/pstl/execution_defs.h /usr/include/c++/11/regex \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/bits/ranges_algo.h \
  /usr/include/c++/11/bits/ranges_util.h \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
  /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \

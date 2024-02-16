@@ -103,6 +103,18 @@
 		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.hpp">
 			<Option target="dnsserver"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.cpp">
+			<Option target="dnsserver"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.hpp">
+			<Option target="dnsserver"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.cpp">
 			<Option target="dnsserver"/>
 		</Unit>

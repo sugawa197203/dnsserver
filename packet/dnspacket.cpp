@@ -5,6 +5,7 @@
 #include "records/authority.hpp"
 #include "records/additional.hpp"
 #include "records/preamble.hpp"
+#include "dnspacketutil.hpp"
 #include <list>
 
 DNSPacket::DNSPacket()
@@ -32,7 +33,7 @@ void DNSPacket::fromBinary(uint8_t *binary, int length)
 	for (int i = 0; i < header.qdcount; i++)
 	{
 		std::string qname = reader.readString();
-		uint16_t qtype = reader.readUInt16();
+		DNSRecordType qtype = (DNSRecordType)reader.readUInt16();
 		uint16_t qclass = reader.readUInt16();
 		questions.push_back(Question(
 			qname,
@@ -74,7 +75,7 @@ int DNSPacket::toBinary(uint8_t *binary, int length)
 		writer.writeUInt16(answer.class_);
 		writer.writeUInt32(answer.ttl);
 		writer.writeUInt16(answer.rdlength);
-		writer.writeUInt32(answer.IP);
+        writer.writeBytes(answer.getIP(), answer.rdlength);
 	}
 
 	return writer.getPosition();

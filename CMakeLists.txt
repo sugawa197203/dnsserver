@@ -12,4 +12,6 @@ add_executable(dnsserver
 	packet/dnspacket.cpp
 	utils/binaryreader.cpp
 	utils/binarywriter.cpp
-	)
+		packet/records/answer/arecord.hpp packet/records/answer/arecord.cpp
+		packet/records/answer/aaaarecord.hpp
+		packet/records/answer/aaaarecord.cpp)
