@@ -22,6 +22,7 @@
 
 void printBinary(uint8_t *binary, int length)
 {
+    std::cout << "---------- binary ----------" << std::endl;
 	for (int i = 0; i < length; i++)
 	{
 		printf("%02x ", binary[i]);
@@ -38,6 +39,7 @@ void printBinary(uint8_t *binary, int length)
 		}
 	}
 	std::cout << std::endl;
+    std::cout << "---------- end binary ----------" << std::endl;
 }
 
 class DNSServer
@@ -55,6 +57,11 @@ private:
 
 		for (Question &question : packet->questions)
 		{
+            if (question.qtype != DNSRecordType::A)
+            {
+                std::cerr << "Not supported qtype : " << question.qtype << std::endl;
+                continue;
+            }
 			if ((host = gethostbyname(question.qNameFormat().c_str())) == NULL)
 			{
 				perror("gethostbyname");
@@ -130,17 +137,20 @@ public:
 		res.header.setRD(packet->header.getRD());
 
 		res.header.qdcount = packet->header.qdcount;
-		res.header.ancount = hosts.size();
 
 		res.questions = packet->questions;
 
 		for (std::shared_ptr<hostent> &host : hosts)
 		{
-			std::string name = host->h_name;
-			uint32_t ip = *((uint32_t *)host->h_addr_list[0]);
-			Answer answer = Answer::getAnswer(name, DNSRecordType::A, 1, 0, 4, (uint8_t *)&ip);
-			res.answers.push_back(answer);
+            for (int i = 0; host->h_addr_list[i] != NULL; i++)
+            {
+                std::string name = host->h_name;
+                uint32_t IP = *(uint32_t *)host->h_addr_list[i];
+                res.answers.push_back(Answer(name, DNSRecordType::A, 1, 0, 4, IP));
+            }
 		}
+
+        res.header.ancount = res.answers.size();
 
 		res.print();
 
@@ -161,11 +171,14 @@ int main()
 {
 	DNSServer server(25565);
 	std::cout << "---------- Server started ----------" << std::endl;
-	std::shared_ptr<DNSPacket> packet = server.receivePacket();
 
-	std::cout << "#################### Received packet ####################" << std::endl;
+    while (true) {
+        std::cout << "#################### Listening packet ####################" << std::endl;
+        std::shared_ptr<DNSPacket> packet = server.receivePacket();
 
-	server.res(packet);
+        std::cout << "#################### Response packet ####################" << std::endl;
 
+        server.res(packet);
+    }
 	return 0;
 }

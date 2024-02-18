@@ -12,8 +12,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacket.cpp" "CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/additional.cpp" "CMakeFiles/dnsserver.dir/packet/records/additional.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/additional.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.cpp" "CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o.d"
-  "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.cpp" "CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o.d"
-  "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.cpp" "CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.cpp" "CMakeFiles/dnsserver.dir/packet/records/authority.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/authority.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.cpp" "CMakeFiles/dnsserver.dir/packet/records/header.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/header.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.cpp" "CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o.d"

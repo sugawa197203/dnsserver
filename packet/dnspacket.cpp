@@ -75,7 +75,7 @@ int DNSPacket::toBinary(uint8_t *binary, int length)
 		writer.writeUInt16(answer.class_);
 		writer.writeUInt32(answer.ttl);
 		writer.writeUInt16(answer.rdlength);
-        writer.writeBytes(answer.getIP(), answer.rdlength);
+        writer.writeUInt32(bswap_32(answer.IP));
 	}
 
 	return writer.getPosition();

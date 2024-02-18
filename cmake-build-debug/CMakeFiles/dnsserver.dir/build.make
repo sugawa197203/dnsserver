@@ -209,34 +209,6 @@ CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/bismu/Projects/dnsserver/utils/binarywriter.cpp -o CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.s
 
-CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o: CMakeFiles/dnsserver.dir/flags.make
-CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o: ../packet/records/answer/arecord.cpp
-CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o: CMakeFiles/dnsserver.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o -MF CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o.d -o CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o -c /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.cpp
-
-CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.cpp > CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.i
-
-CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/arecord.cpp -o CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.s
-
-CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o: CMakeFiles/dnsserver.dir/flags.make
-CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o: ../packet/records/answer/aaaarecord.cpp
-CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o: CMakeFiles/dnsserver.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o -MF CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o.d -o CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o -c /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.cpp
-
-CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.cpp > CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.i
-
-CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer/aaaarecord.cpp -o CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.s
-
 # Object files for target dnsserver
 dnsserver_OBJECTS = \
 "CMakeFiles/dnsserver.dir/dnsserver.cpp.o" \
@@ -248,9 +220,7 @@ dnsserver_OBJECTS = \
 "CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o" \
 "CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o" \
 "CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o" \
-"CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.o" \
-"CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o" \
-"CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o"
+"CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.o"
 
 # External object files for target dnsserver
 dnsserver_EXTERNAL_OBJECTS =
@@ -265,11 +235,9 @@ dnsserver: CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o
 dnsserver: CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o
 dnsserver: CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o
 dnsserver: CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.o
-dnsserver: CMakeFiles/dnsserver.dir/packet/records/answer/arecord.cpp.o
-dnsserver: CMakeFiles/dnsserver.dir/packet/records/answer/aaaarecord.cpp.o
 dnsserver: CMakeFiles/dnsserver.dir/build.make
 dnsserver: CMakeFiles/dnsserver.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable dnsserver"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable dnsserver"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/dnsserver.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

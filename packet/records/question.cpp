@@ -15,15 +15,15 @@ Question::~Question()
 
 std::string Question::qNameFormat()
 {
-	std::string result = qname;
-	// to lower case
-	std::transform(result.begin(), result.end(), result.begin(), ::tolower);
-	// replace 0x03 with '.'
-	std::regex re("\\x03");
-	result = std::regex_replace(result, re, ".");
-	// remove control characters
-	re = std::regex("[\\x00-\\x1F]");
-	result = std::regex_replace(result, re, "");
+    std::string result = qname.substr(1);\
+    for (int i = 0; i < result.length(); i++)
+    {
+        if (result[i] < 20)
+        {
+            result[i] = '.';
+        }
+    }
+
 	return result;
 }
 
