@@ -127,12 +127,6 @@
 		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.hpp">
 			<Option target="dnsserver"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/sample/libbb.h">
-			<Option target="dnsserver"/>
-		</Unit>
-		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/sample/nslookup.cpp">
-			<Option target="dnsserver"/>
-		</Unit>
 		<Unit filename="/mnt/c/Users/bismu/Projects/dnsserver/utils/binaryreader.cpp">
 			<Option target="dnsserver"/>
 		</Unit>

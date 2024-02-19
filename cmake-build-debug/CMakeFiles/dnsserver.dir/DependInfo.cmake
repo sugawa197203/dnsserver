@@ -16,7 +16,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.cpp" "CMakeFiles/dnsserver.dir/packet/records/header.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/header.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.cpp" "CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.cpp" "CMakeFiles/dnsserver.dir/packet/records/question.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/packet/records/question.cpp.o.d"
-  "/mnt/c/Users/bismu/Projects/dnsserver/sample/nslookup.cpp" "CMakeFiles/dnsserver.dir/sample/nslookup.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/sample/nslookup.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/utils/binaryreader.cpp" "CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o.d"
   "/mnt/c/Users/bismu/Projects/dnsserver/utils/binarywriter.cpp" "CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.o" "gcc" "CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.o.d"
   )

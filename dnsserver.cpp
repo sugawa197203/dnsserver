@@ -163,7 +163,7 @@ public:
 		DNSPacket res;
 		res.header = packet->header;
 		res.header.setQR(true);
-		res.header.setRD(packet->header.getRD());
+		res.header.setRD(0);
 
 		res.header.qdcount = packet->header.qdcount;
 
@@ -180,6 +180,12 @@ public:
 		}
 
         res.header.ancount = res.answers.size();
+
+        // 0 to 7 data
+        //Additional additional(res.answers.front().name, DNSRecordType::TXT, 1, 0, 8, std::make_shared<std::vector<uint8_t>>(std::vector<uint8_t>{0x67, 0x67, 0x67, 0x67, 0x67, 0x67, 0x67, 0x00}));
+        Additional additional(res.answers.front().name, DNSRecordType::A, 1, 0, 8, std::make_shared<std::vector<uint8_t>>(std::vector<uint8_t>{0x00, 0x00, 0x00, 0x00}));
+        res.additionals.push_back(additional);
+        res.header.arcount = res.additionals.size();
 
 		res.print();
 

@@ -114,3 +114,11 @@ enum DNSRecordType : uint16_t
 	MAILA = 0x00fe,
 	ANY = 0x00ff
 };
+
+enum DNSRecordClass : uint16_t
+{
+    IN = 0x0001,
+    CS = 0x0002,
+    CH = 0x0003,
+    HS = 0x0004,
+};

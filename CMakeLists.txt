@@ -12,7 +12,4 @@ add_executable(dnsserver
 	packet/dnspacket.cpp
 	utils/binaryreader.cpp
 	utils/binarywriter.cpp
-		sample/nslookup.cpp
-		nslookup/libbb.h
-		nslookup/platform.h
 )

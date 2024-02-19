@@ -93,7 +93,7 @@ int DNSPacket::toBinary(uint8_t *binary, int length)
 
     for (Additional &additional : additionals)
     {
-        writer.writeString(additional.name);
+        writer.writeString(questions.front().qname);
         writer.writeUInt16(additional.type);
         writer.writeUInt16(additional.class_);
         writer.writeUInt32(additional.ttl);
