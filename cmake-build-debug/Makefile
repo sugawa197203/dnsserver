@@ -321,6 +321,30 @@ packet/records/question.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/question.cpp.s
 .PHONY : packet/records/question.cpp.s
 
+sample/nslookup.o: sample/nslookup.cpp.o
+.PHONY : sample/nslookup.o
+
+# target to build an object file
+sample/nslookup.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/sample/nslookup.cpp.o
+.PHONY : sample/nslookup.cpp.o
+
+sample/nslookup.i: sample/nslookup.cpp.i
+.PHONY : sample/nslookup.i
+
+# target to preprocess a source file
+sample/nslookup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/sample/nslookup.cpp.i
+.PHONY : sample/nslookup.cpp.i
+
+sample/nslookup.s: sample/nslookup.cpp.s
+.PHONY : sample/nslookup.s
+
+# target to generate assembly for a file
+sample/nslookup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/sample/nslookup.cpp.s
+.PHONY : sample/nslookup.cpp.s
+
 utils/binaryreader.o: utils/binaryreader.cpp.o
 .PHONY : utils/binaryreader.o
 
@@ -402,6 +426,9 @@ help:
 	@echo "... packet/records/question.o"
 	@echo "... packet/records/question.i"
 	@echo "... packet/records/question.s"
+	@echo "... sample/nslookup.o"
+	@echo "... sample/nslookup.i"
+	@echo "... sample/nslookup.s"
 	@echo "... utils/binaryreader.o"
 	@echo "... utils/binaryreader.i"
 	@echo "... utils/binaryreader.s"

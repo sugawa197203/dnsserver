@@ -68,15 +68,41 @@ int DNSPacket::toBinary(uint8_t *binary, int length)
 
 	for (Answer &answer : answers)
 	{
-		std::string name = "\x06" + std::string(answer.name);
-		name.replace(name.find("."), 1, 1, '\x03');
-		writer.writeString(name);
+		//std::string name = "\x06" + std::string(answer.name);
+		//name.replace(name.find("."), 1, 1, '\x03');
+		writer.writeString(questions.front().qname);
 		writer.writeUInt16(answer.type);
 		writer.writeUInt16(answer.class_);
 		writer.writeUInt32(answer.ttl);
 		writer.writeUInt16(answer.rdlength);
         writer.writeUInt32(bswap_32(answer.IP));
 	}
+
+    for (Authority &authority : authorities)
+    {
+        writer.writeString(authority.name);
+        writer.writeUInt16(authority.type);
+        writer.writeUInt16(authority.class_);
+        writer.writeUInt32(authority.ttl);
+        writer.writeUInt16(authority.rdlength);
+        for (auto byte : *authority.RDATA)
+        {
+            writer.writeUInt8(byte);
+        }
+    }
+
+    for (Additional &additional : additionals)
+    {
+        writer.writeString(additional.name);
+        writer.writeUInt16(additional.type);
+        writer.writeUInt16(additional.class_);
+        writer.writeUInt32(additional.ttl);
+        writer.writeUInt16(additional.rdlength);
+        for (auto byte : *additional.RDATA)
+        {
+            writer.writeUInt8(byte);
+        }
+    }
 
 	return writer.getPosition();
 }
@@ -96,15 +122,15 @@ void DNSPacket::print()
 		answer.print();
 	}
 
-	// std::cout << "Authorities: " << authorities.size() << std::endl;
-	// for (auto &authority : authorities)
-	// {
-	// 	authority.print();
-	// }
+	 std::cout << "Authorities: " << authorities.size() << std::endl;
+	 for (auto &authority : authorities)
+	 {
+	 	authority.print();
+	 }
 
-	// std::cout << "Additionals: " << additionals.size() << std::endl;
-	// for (auto &additional : additionals)
-	// {
-	// 	additional.print();
-	// }
+	 std::cout << "Additionals: " << additionals.size() << std::endl;
+	 for (auto &additional : additionals)
+	 {
+	 	additional.print();
+	 }
 }

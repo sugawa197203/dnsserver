@@ -55,13 +55,24 @@ private:
 		std::list<std::shared_ptr<hostent>> hosts;
 		struct hostent *host;
 
+        std::cerr << "---------- getHost ----------" << std::endl;
 		for (Question &question : packet->questions)
 		{
+            std::cerr << (question.qtype == DNSRecordType::A ? "A record" : "AAAA or another record") << std::endl;
             if (question.qtype != DNSRecordType::A)
             {
                 std::cerr << "Not supported qtype : " << question.qtype << std::endl;
                 continue;
             }
+            for (int i = 0; i < question.qname.size(); i++){
+                fprintf(stderr, "%c  ", question.qname[i]);
+            }
+            fprintf(stderr, "\n");
+            for (int i = 0; i < question.qname.size(); i++){
+                fprintf(stderr, "%02x ", question.qname[i]);
+            }
+            fprintf(stderr, "\n");
+
 			if ((host = gethostbyname(question.qNameFormat().c_str())) == NULL)
 			{
 				perror("gethostbyname");
@@ -69,9 +80,27 @@ private:
 				abort();
 			}
 
+
+            for (int i = 0; host->h_addr_list[i] != NULL; i++)
+            {
+                char* c = host->h_name;
+                while(*c){
+                    fprintf(stderr, "%c  ", *c);
+                    c++;
+                }
+                fprintf(stderr, "\n");
+                c = host->h_name;
+                while(*c){
+                    fprintf(stderr, "%02x ", *c);
+                    c++;
+                }
+                fprintf(stderr, "\n");
+            }
+
 			hosts.push_back(std::make_unique<hostent>(*host));
 		}
 
+        std::cerr << "---------- end getHost ----------" << std::endl;
 		return hosts;
 	}
 
@@ -179,6 +208,7 @@ int main()
         std::cout << "#################### Response packet ####################" << std::endl;
 
         server.res(packet);
+
     }
 	return 0;
 }
