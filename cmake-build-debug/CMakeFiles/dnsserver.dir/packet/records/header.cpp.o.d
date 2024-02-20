@@ -1,7 +1,7 @@
 CMakeFiles/dnsserver.dir/packet/records/header.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.cpp \
+ /mnt/d/workspace/dnsserver/packet/records/header.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/header.hpp \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/types.h /usr/include/features.h \
  /usr/include/features-time64.h \

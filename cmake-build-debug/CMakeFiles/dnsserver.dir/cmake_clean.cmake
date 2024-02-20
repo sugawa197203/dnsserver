@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o.d"
   "CMakeFiles/dnsserver.dir/packet/records/question.cpp.o"
   "CMakeFiles/dnsserver.dir/packet/records/question.cpp.o.d"
+  "CMakeFiles/dnsserver.dir/sitesnippet/sitesnippet.cpp.o"
+  "CMakeFiles/dnsserver.dir/sitesnippet/sitesnippet.cpp.o.d"
   "CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o"
   "CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o.d"
   "CMakeFiles/dnsserver.dir/utils/binarywriter.cpp.o"

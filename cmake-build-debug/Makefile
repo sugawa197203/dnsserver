@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/bismu/Projects/dnsserver
+CMAKE_SOURCE_DIR = /mnt/d/workspace/dnsserver
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/d/workspace/dnsserver/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/CMakeFiles /mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/workspace/dnsserver/cmake-build-debug/CMakeFiles /mnt/d/workspace/dnsserver/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/workspace/dnsserver/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -321,6 +321,30 @@ packet/records/question.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/packet/records/question.cpp.s
 .PHONY : packet/records/question.cpp.s
 
+sitesnippet/sitesnippet.o: sitesnippet/sitesnippet.cpp.o
+.PHONY : sitesnippet/sitesnippet.o
+
+# target to build an object file
+sitesnippet/sitesnippet.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/sitesnippet/sitesnippet.cpp.o
+.PHONY : sitesnippet/sitesnippet.cpp.o
+
+sitesnippet/sitesnippet.i: sitesnippet/sitesnippet.cpp.i
+.PHONY : sitesnippet/sitesnippet.i
+
+# target to preprocess a source file
+sitesnippet/sitesnippet.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/sitesnippet/sitesnippet.cpp.i
+.PHONY : sitesnippet/sitesnippet.cpp.i
+
+sitesnippet/sitesnippet.s: sitesnippet/sitesnippet.cpp.s
+.PHONY : sitesnippet/sitesnippet.s
+
+# target to generate assembly for a file
+sitesnippet/sitesnippet.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/dnsserver.dir/build.make CMakeFiles/dnsserver.dir/sitesnippet/sitesnippet.cpp.s
+.PHONY : sitesnippet/sitesnippet.cpp.s
+
 utils/binaryreader.o: utils/binaryreader.cpp.o
 .PHONY : utils/binaryreader.o
 
@@ -402,6 +426,9 @@ help:
 	@echo "... packet/records/question.o"
 	@echo "... packet/records/question.i"
 	@echo "... packet/records/question.s"
+	@echo "... sitesnippet/sitesnippet.o"
+	@echo "... sitesnippet/sitesnippet.i"
+	@echo "... sitesnippet/sitesnippet.s"
 	@echo "... utils/binaryreader.o"
 	@echo "... utils/binaryreader.i"
 	@echo "... utils/binaryreader.s"

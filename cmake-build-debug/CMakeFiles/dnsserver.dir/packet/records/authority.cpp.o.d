@@ -1,7 +1,7 @@
 CMakeFiles/dnsserver.dir/packet/records/authority.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.cpp \
+ /mnt/d/workspace/dnsserver/packet/records/authority.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/authority.hpp \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
@@ -204,8 +204,8 @@ CMakeFiles/dnsserver.dir/packet/records/authority.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/../dnspacketutil.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/preamble.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/../dnspacketutil.hpp \
  /usr/include/c++/11/iostream /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/iomanip \
  /usr/include/c++/11/locale \

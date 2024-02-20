@@ -1,5 +1,5 @@
 CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/utils/binaryreader.cpp \
+ /mnt/d/workspace/dnsserver/utils/binaryreader.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -157,4 +157,4 @@ CMakeFiles/dnsserver.dir/utils/binaryreader.cpp.o: \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/bit \
  /usr/include/byteswap.h \
- /mnt/c/Users/bismu/Projects/dnsserver/utils/binaryreader.hpp
+ /mnt/d/workspace/dnsserver/utils/binaryreader.hpp

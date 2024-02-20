@@ -12,4 +12,6 @@ add_executable(dnsserver
 	packet/dnspacket.cpp
 	utils/binaryreader.cpp
 	utils/binarywriter.cpp
+	sitesnippet/sitesnippet.hpp
+	sitesnippet/sitesnippet.cpp
 )

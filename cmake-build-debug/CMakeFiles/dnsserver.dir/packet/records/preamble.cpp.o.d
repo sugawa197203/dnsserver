@@ -1,5 +1,5 @@
 CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.cpp \
+ /mnt/d/workspace/dnsserver/packet/records/preamble.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -159,8 +159,8 @@ CMakeFiles/dnsserver.dir/packet/records/preamble.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/../dnspacketutil.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/preamble.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/../dnspacketutil.hpp \
  /usr/include/c++/11/iomanip /usr/include/c++/11/locale \
  /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \

@@ -55,7 +55,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug"
+			"value" : "/mnt/d/workspace/dnsserver/cmake-build-debug"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -127,7 +127,7 @@
 				}
 			],
 			"type" : "STRING",
-			"value" : "-j8"
+			"value" : "-j12"
 		},
 		{
 			"name" : "CMAKE_COLOR_MAKEFILE",
@@ -527,7 +527,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "/mnt/c/Users/bismu/Projects/dnsserver"
+			"value" : "/mnt/d/workspace/dnsserver"
 		},
 		{
 			"name" : "CMAKE_INSTALL_PREFIX",
@@ -1095,7 +1095,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug"
+			"value" : "/mnt/d/workspace/dnsserver/cmake-build-debug"
 		},
 		{
 			"name" : "dnsserver_IS_TOP_LEVEL",
@@ -1119,7 +1119,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "/mnt/c/Users/bismu/Projects/dnsserver"
+			"value" : "/mnt/d/workspace/dnsserver"
 		}
 	],
 	"kind" : "cache",

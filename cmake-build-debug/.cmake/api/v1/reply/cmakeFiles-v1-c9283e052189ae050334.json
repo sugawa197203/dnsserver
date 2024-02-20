@@ -101,8 +101,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "/mnt/c/Users/bismu/Projects/dnsserver/cmake-build-debug",
-		"source" : "/mnt/c/Users/bismu/Projects/dnsserver"
+		"build" : "/mnt/d/workspace/dnsserver/cmake-build-debug",
+		"source" : "/mnt/d/workspace/dnsserver"
 	},
 	"version" : 
 	{

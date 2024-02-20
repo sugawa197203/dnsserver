@@ -11,6 +11,7 @@
 #include "utils/binarywriter.hpp"
 #include "packet/dnspacket.hpp"
 #include "packet/dnspacketutil.hpp"
+#include "sitesnippet/sitesnippet.hpp"
 #include <bit>
 #include <regex>
 #include <iomanip>
@@ -55,7 +56,6 @@ private:
 		std::list<std::shared_ptr<hostent>> hosts;
 		struct hostent *host;
 
-        std::cerr << "---------- getHost ----------" << std::endl;
 		for (Question &question : packet->questions)
 		{
             std::cerr << (question.qtype == DNSRecordType::A ? "A record" : "AAAA or another record") << std::endl;
@@ -64,14 +64,6 @@ private:
                 std::cerr << "Not supported qtype : " << question.qtype << std::endl;
                 continue;
             }
-            for (int i = 0; i < question.qname.size(); i++){
-                fprintf(stderr, "%c  ", question.qname[i]);
-            }
-            fprintf(stderr, "\n");
-            for (int i = 0; i < question.qname.size(); i++){
-                fprintf(stderr, "%02x ", question.qname[i]);
-            }
-            fprintf(stderr, "\n");
 
 			if ((host = gethostbyname(question.qNameFormat().c_str())) == NULL)
 			{
@@ -80,27 +72,9 @@ private:
 				abort();
 			}
 
-
-            for (int i = 0; host->h_addr_list[i] != NULL; i++)
-            {
-                char* c = host->h_name;
-                while(*c){
-                    fprintf(stderr, "%c  ", *c);
-                    c++;
-                }
-                fprintf(stderr, "\n");
-                c = host->h_name;
-                while(*c){
-                    fprintf(stderr, "%02x ", *c);
-                    c++;
-                }
-                fprintf(stderr, "\n");
-            }
-
 			hosts.push_back(std::make_unique<hostent>(*host));
 		}
 
-        std::cerr << "---------- end getHost ----------" << std::endl;
 		return hosts;
 	}
 
@@ -182,8 +156,12 @@ public:
         res.header.ancount = res.answers.size();
 
         // 0 to 7 data
-        //Additional additional(res.answers.front().name, DNSRecordType::TXT, 1, 0, 8, std::make_shared<std::vector<uint8_t>>(std::vector<uint8_t>{0x67, 0x67, 0x67, 0x67, 0x67, 0x67, 0x67, 0x00}));
-        Additional additional(res.answers.front().name, DNSRecordType::A, 1, 0, 8, std::make_shared<std::vector<uint8_t>>(std::vector<uint8_t>{0x00, 0x00, 0x00, 0x00}));
+        //std::string text = "the magic words are squeamish ossifrage To know is to know that you know nothingThat is the true meaning of knowledge";
+        std::string text = "01245";
+        text = '\03' + text;
+        std::shared_ptr<std::vector<uint8_t>> RDATA = std::make_shared<std::vector<uint8_t>>(text.begin(), text.end());
+        Additional additional(res.answers.front().name, DNSRecordType::TXT, 1, 0, text.size(), RDATA);
+        res.additionals.push_back(additional);
         res.additionals.push_back(additional);
         res.header.arcount = res.additionals.size();
 
@@ -199,7 +177,17 @@ public:
 		}
 
 		printBinary(binary.data(), length);
-	}
+
+
+        std::cout << "#################### SNIPPET ####################" << std::endl;
+
+        std::string snippet = SiteSnippet::getSnippet(res.answers.front().name);
+        std::cout << "-------------------- SNIPPET --------------------" << std::endl;
+        std::cout << snippet << std::endl;
+
+        std::cout << "#################### END SNIPPET ####################" << std::endl;
+
+    }
 };
 
 int main()
