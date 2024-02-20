@@ -1,23 +1,13 @@
-#include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
-#include <arpa/inet.h>
 #include <unistd.h>
-#include <string.h>
 #include <string>
 #include <iostream>
-#include <byteswap.h>
-#include "utils/binaryreader.hpp"
-#include "utils/binarywriter.hpp"
 #include "packet/dnspacket.hpp"
 #include "packet/dnspacketutil.hpp"
 #include "sitesnippet/sitesnippet.hpp"
-#include <bit>
-#include <regex>
 #include <iomanip>
-#include <ios>
 #include <netdb.h>
-#include <byteswap.h>
 #include <vector>
 #include <memory>
 
@@ -48,10 +38,10 @@ class DNSServer
 private:
 	const int BUFFER_SIZE = 1024;
 	int sock;
-	struct sockaddr_in addr;
+	struct sockaddr_in addr{};
 	socklen_t addr_len = sizeof(struct sockaddr_in);
 
-	std::list<std::shared_ptr<hostent>> getHost(std::shared_ptr<DNSPacket> packet)
+	static std::list<std::shared_ptr<hostent>> getHost(const std::shared_ptr<DNSPacket>& packet)
 	{
 		std::list<std::shared_ptr<hostent>> hosts;
 		struct hostent *host;
@@ -65,7 +55,7 @@ private:
                 continue;
             }
 
-			if ((host = gethostbyname(question.qNameFormat().c_str())) == NULL)
+			if ((host = gethostbyname(question.qNameFormat().c_str())) == nullptr)
 			{
 				perror("gethostbyname");
 				fprintf(stderr, "\tqName : %s\n", question.qNameFormat().c_str());
@@ -81,14 +71,14 @@ private:
 public:
 	uint16_t port;
 
-	DNSServer(uint16_t port = 53)
+	explicit DNSServer(uint16_t port = 53)
 	{
 		this->port = port;
 
 		if ((sock = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
 		{
 			perror("socket");
-			return;
+            throw std::runtime_error("socket");
 		}
 
 		bzero((char *)&addr, sizeof(addr));
@@ -99,7 +89,7 @@ public:
 		if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
 		{
 			perror("bind");
-			return;
+            throw std::runtime_error("bind");
 		}
 	}
 
@@ -118,7 +108,7 @@ public:
 		if ((len = recvfrom(sock, buf, sizeof(buf) - 1, 0, (struct sockaddr *)&addr, &addr_len)) < 0)
 		{
 			perror("recvfrom");
-			abort();
+            return nullptr;
 		}
 
 		packet->fromBinary(buf, len);
@@ -137,7 +127,7 @@ public:
 		DNSPacket res;
 		res.header = packet->header;
 		res.header.setQR(true);
-		res.header.setRD(0);
+		res.header.setRD(false);
 
 		res.header.qdcount = packet->header.qdcount;
 
@@ -145,23 +135,25 @@ public:
 
 		for (std::shared_ptr<hostent> &host : hosts)
 		{
-            for (int i = 0; host->h_addr_list[i] != NULL; i++)
+            for (int i = 0; host->h_addr_list[i] != nullptr; i++)
             {
                 std::string name = host->h_name;
                 uint32_t IP = *(uint32_t *)host->h_addr_list[i];
-                res.answers.push_back(Answer(name, DNSRecordType::A, 1, 0, 4, IP));
+                res.answers.emplace_back(name, DNSRecordType::A, 1, 0, 4, IP);
             }
 		}
 
         res.header.ancount = res.answers.size();
 
-        // 0 to 7 data
-        //std::string text = "the magic words are squeamish ossifrage To know is to know that you know nothingThat is the true meaning of knowledge";
-        std::string text = "01245";
-        text = '\03' + text;
-        std::shared_ptr<std::vector<uint8_t>> RDATA = std::make_shared<std::vector<uint8_t>>(text.begin(), text.end());
-        Additional additional(res.answers.front().name, DNSRecordType::TXT, 1, 0, text.size(), RDATA);
-        res.additionals.push_back(additional);
+        std::cout << "#################### SNIPPET ####################" << std::endl;
+        std::string snippet = SiteSnippet::getSnippetText(res.answers.front().name);
+        std::cout << "-------------------- SNIPPET --------------------" << std::endl;
+        std::cout << snippet << std::endl;
+        std::cout << "#################### END SNIPPET ####################" << std::endl;
+
+        snippet = '\x03' + snippet;
+        std::shared_ptr<std::vector<uint8_t>> RDATA = std::make_shared<std::vector<uint8_t>>(snippet.begin(), snippet.end());
+        Additional additional(res.answers.front().name, DNSRecordType::TXT, 1, 0, snippet.size(), RDATA);
         res.additionals.push_back(additional);
         res.header.arcount = res.additionals.size();
 
@@ -179,13 +171,6 @@ public:
 		printBinary(binary.data(), length);
 
 
-        std::cout << "#################### SNIPPET ####################" << std::endl;
-
-        std::string snippet = SiteSnippet::getSnippet(res.answers.front().name);
-        std::cout << "-------------------- SNIPPET --------------------" << std::endl;
-        std::cout << snippet << std::endl;
-
-        std::cout << "#################### END SNIPPET ####################" << std::endl;
 
     }
 };
@@ -198,11 +183,14 @@ int main()
     while (true) {
         std::cout << "#################### Listening packet ####################" << std::endl;
         std::shared_ptr<DNSPacket> packet = server.receivePacket();
-
         std::cout << "#################### Response packet ####################" << std::endl;
 
-        server.res(packet);
+        if (packet == nullptr)
+        {
+            continue;
+        }
 
+        server.res(packet);
     }
 	return 0;
 }

@@ -1,7 +1,7 @@
 CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.cpp \
+ /mnt/d/workspace/dnsserver/packet/records/answer.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/answer.hpp \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
@@ -13,7 +13,8 @@ CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/preamble.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/../dnspacketutil.hpp \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \

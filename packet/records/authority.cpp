@@ -1,10 +1,11 @@
 #include "authority.hpp"
 #include <iomanip>
+#include <utility>
 
 Authority::Authority(std::string name, DNSRecordType type, uint16_t class_, uint32_t ttl, uint16_t rdlength, std::shared_ptr<std::vector<uint8_t>> RDATA)
-    : Preamble(name, type, class_, ttl, rdlength)
+    : Preamble(std::move(name), type, class_, ttl, rdlength)
 {
-    this->RDATA = RDATA;
+    this->RDATA = std::move(RDATA);
 }
 
 void Authority::print()

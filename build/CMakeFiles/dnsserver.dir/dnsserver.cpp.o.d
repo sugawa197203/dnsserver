@@ -1,7 +1,7 @@
 CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/dnsserver.cpp \
- /usr/include/stdc-predef.h /usr/include/x86_64-linux-gnu/sys/types.h \
- /usr/include/features.h /usr/include/features-time64.h \
+ /mnt/d/workspace/dnsserver/dnsserver.cpp /usr/include/stdc-predef.h \
+ /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/features.h \
+ /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
  /usr/include/x86_64-linux-gnu/bits/timesize.h \
  /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -183,21 +183,20 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc /usr/include/byteswap.h \
- /mnt/c/Users/bismu/Projects/dnsserver/utils/binaryreader.hpp \
+ /mnt/d/workspace/dnsserver/utils/binaryreader.hpp \
  /usr/include/c++/11/bit \
- /mnt/c/Users/bismu/Projects/dnsserver/utils/binarywriter.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacket.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/additional.hpp \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/allocated_ptr.h \
- /usr/include/c++/11/ext/aligned_buffer.h \
- /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/memory \
- /usr/include/c++/11/bits/stl_uninitialized.h \
+ /mnt/d/workspace/dnsserver/utils/binarywriter.hpp \
+ /mnt/d/workspace/dnsserver/packet/dnspacket.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/header.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/question.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/../dnspacketutil.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/answer.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/preamble.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/authority.hpp \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h \
  /usr/include/c++/11/bits/uses_allocator.h \
@@ -206,7 +205,10 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /usr/include/c++/11/array /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/shared_ptr.h \
  /usr/include/c++/11/bits/shared_ptr_base.h \
- /usr/include/c++/11/bits/refwrap.h /usr/include/c++/11/ext/concurrence.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/bits/refwrap.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/ext/concurrence.h \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
  /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
@@ -231,9 +233,21 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
  /usr/include/c++/11/pstl/execution_defs.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacketutil.hpp \
- /usr/include/c++/11/regex /usr/include/c++/11/algorithm \
- /usr/include/c++/11/bits/ranges_algo.h \
+ /mnt/d/workspace/dnsserver/packet/records/additional.hpp \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc \
+ /mnt/d/workspace/dnsserver/sitesnippet/sitesnippet.hpp \
+ /usr/include/c++/11/cstring /usr/include/c++/11/atomic \
+ /usr/include/x86_64-linux-gnu/curl/curl.h \
+ /usr/include/x86_64-linux-gnu/curl/curlver.h \
+ /usr/include/x86_64-linux-gnu/curl/system.h \
+ /usr/include/x86_64-linux-gnu/sys/time.h \
+ /usr/include/x86_64-linux-gnu/curl/easy.h \
+ /usr/include/x86_64-linux-gnu/curl/multi.h \
+ /usr/include/x86_64-linux-gnu/curl/curl.h \
+ /usr/include/x86_64-linux-gnu/curl/urlapi.h \
+ /usr/include/x86_64-linux-gnu/curl/options.h /usr/include/c++/11/regex \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/bits/ranges_algo.h \
  /usr/include/c++/11/bits/ranges_util.h \
  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
  /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
@@ -242,10 +256,7 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /usr/include/c++/11/bits/enable_special_members.h \
  /usr/include/c++/11/bits/node_handle.h \
  /usr/include/c++/11/bits/unordered_map.h \
- /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/vector \
- /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bitset \
+ /usr/include/c++/11/bits/erase_if.h /usr/include/c++/11/bitset \
  /usr/include/c++/11/locale \
  /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
@@ -258,7 +269,7 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /usr/include/c++/11/bits/deque.tcc /usr/include/c++/11/bits/stl_stack.h \
  /usr/include/c++/11/map /usr/include/c++/11/bits/stl_tree.h \
  /usr/include/c++/11/bits/stl_map.h \
- /usr/include/c++/11/bits/stl_multimap.h /usr/include/c++/11/cstring \
+ /usr/include/c++/11/bits/stl_multimap.h \
  /usr/include/c++/11/bits/regex_constants.h \
  /usr/include/c++/11/bits/regex_error.h \
  /usr/include/c++/11/bits/regex_automaton.h \
@@ -274,4 +285,7 @@ CMakeFiles/dnsserver.dir/dnsserver.cpp.o: \
  /usr/include/rpc/netdb.h \
  /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
  /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/netdb.h
+ /usr/include/x86_64-linux-gnu/bits/netdb.h /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc

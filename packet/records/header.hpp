@@ -12,51 +12,51 @@ public:
 	uint16_t nscount;
 	uint16_t arcount;
 
-	Header(uint16_t id, uint16_t flags, uint16_t qdcount, uint16_t ancount, uint16_t nscount, uint16_t arcount);
+    [[maybe_unused]] Header(uint16_t id, uint16_t flags, uint16_t qdcount, uint16_t ancount, uint16_t nscount, uint16_t arcount);
 
 	Header();
 
 	~Header();
 
-	bool getQR();
+    [[maybe_unused]] [[nodiscard]] bool getQR() const;
 
-	uint8_t getOpcode();
+    [[maybe_unused]] [[nodiscard]] uint8_t getOpcode() const;
 
-	bool getAA();
+    [[maybe_unused]] bool getAA() const;
 
-	bool getTC();
+    [[maybe_unused]] bool getTC() const;
 
-	bool getRD();
+    [[maybe_unused]] bool getRD() const;
 
-	bool getRA();
+    [[maybe_unused]] bool getRA() const;
 
-	bool getZ();
+    [[maybe_unused]] bool getZ() const;
 
-	bool getAD();
+    [[maybe_unused]] bool getAD() const;
 
-	bool getCD();
+    [[maybe_unused]] bool getCD() const;
 
-	uint8_t getRCODE();
+    [[maybe_unused]] uint8_t getRCODE() const;
 
 	void setQR(bool qr);
 
-	void setOpcode(uint8_t opcode);
+    [[maybe_unused]] void setOpcode(uint8_t opcode);
 
-	void setAA(bool aa);
+    [[maybe_unused]] void setAA(bool aa);
 
-	void setTC(bool tc);
+    [[maybe_unused]] void setTC(bool tc);
 
 	void setRD(bool rd);
 
-	void setRA(bool ra);
+    [[maybe_unused]] void setRA(bool ra);
 
-	void setZ(bool z);
+    [[maybe_unused]] void setZ(bool z);
 
-	void setAD(bool ad);
+    [[maybe_unused]] void setAD(bool ad);
 
-	void setCD(bool cd);
+    [[maybe_unused]] void setCD(bool cd);
 
-	void setRCODE(uint8_t rcode);
+    [[maybe_unused]] void setRCODE(uint8_t rcode);
 
-	void print();
+	void print() const;
 };

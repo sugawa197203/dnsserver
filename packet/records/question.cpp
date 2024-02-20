@@ -1,19 +1,18 @@
 #include "question.hpp"
 
-#include <regex>
+#include <utility>
 
 Question::Question(std::string qname, DNSRecordType qtype, uint16_t qclass)
 {
-	this->qname = qname;
+	this->qname = std::move(qname);
 	this->qtype = qtype;
 	this->qclass = qclass;
 }
 
 Question::~Question()
-{
-}
+= default;
 
-std::string Question::qNameFormat()
+std::string Question::qNameFormat() const
 {
     std::string result = qname.substr(1);\
     for (int i = 0; i < result.length(); i++)
@@ -27,7 +26,7 @@ std::string Question::qNameFormat()
 	return result;
 }
 
-void Question::print()
+void Question::print() const
 {
 	std::cout << "---------- DNS Question ----------" << std::endl;
 	std::cout << "QName: " << qNameFormat() << std::endl;

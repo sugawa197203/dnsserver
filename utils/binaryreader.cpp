@@ -22,20 +22,20 @@ BinaryReader::BinaryReader(uint8_t *head, int length, std::endian endian = std::
 	this->endian = endian;
 }
 
-BinaryReader::~BinaryReader() {}
+BinaryReader::~BinaryReader() = default;
 
-int BinaryReader::getLength()
+[[maybe_unused]] int BinaryReader::getLength() const
 {
 	return length;
 }
 
-int BinaryReader::getPosition()
+[[maybe_unused]] int BinaryReader::getPosition()
 {
 	return pos - head;
 }
 
 template <typename T>
-T BinaryReader::read()
+[[maybe_unused]] T BinaryReader::read()
 {
 	if (isEOF())
 	{
@@ -52,7 +52,7 @@ T BinaryReader::read()
 	return value;
 }
 
-uint8_t BinaryReader::readUInt8()
+[[maybe_unused]] uint8_t BinaryReader::readUInt8()
 {
 	if (isEOF())
 	{
@@ -84,7 +84,7 @@ uint16_t BinaryReader::readUInt16()
 	return endian == std::endian::big ? bswap_16(value) : value;
 }
 
-uint32_t BinaryReader::readUInt32()
+[[maybe_unused]] uint32_t BinaryReader::readUInt32()
 {
 	if (isEOF())
 	{
@@ -100,7 +100,7 @@ uint32_t BinaryReader::readUInt32()
 	return endian == std::endian::big ? bswap_32(value) : value;
 }
 
-uint64_t BinaryReader::readUInt64()
+[[maybe_unused]] uint64_t BinaryReader::readUInt64()
 {
 	if (isEOF())
 	{

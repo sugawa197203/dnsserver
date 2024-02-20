@@ -1,7 +1,7 @@
 CMakeFiles/dnsserver.dir/packet/records/question.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.cpp \
+ /mnt/d/workspace/dnsserver/packet/records/question.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/question.hpp \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
@@ -159,9 +159,10 @@ CMakeFiles/dnsserver.dir/packet/records/question.cpp.o: \
  /usr/include/c++/11/bits/locale_facets.tcc \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc /usr/include/c++/11/regex \
- /usr/include/c++/11/algorithm /usr/include/c++/11/utility \
- /usr/include/c++/11/bits/stl_relops.h \
+ /usr/include/c++/11/bits/istream.tcc \
+ /mnt/d/workspace/dnsserver/packet/records/../dnspacketutil.hpp \
+ /usr/include/c++/11/regex /usr/include/c++/11/algorithm \
+ /usr/include/c++/11/utility /usr/include/c++/11/bits/stl_relops.h \
  /usr/include/c++/11/bits/ranges_algo.h \
  /usr/include/c++/11/bits/ranges_algobase.h /usr/include/c++/11/iterator \
  /usr/include/c++/11/bits/stream_iterator.h \

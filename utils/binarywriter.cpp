@@ -1,7 +1,5 @@
-#include <iostream>
 #include <string>
 #include <bit>
-#include <byteswap.h>
 #include "binarywriter.hpp"
 
 BinaryWriter::BinaryWriter(uint8_t *head, int length, std::endian endian = std::endian::big)
@@ -12,7 +10,7 @@ BinaryWriter::BinaryWriter(uint8_t *head, int length, std::endian endian = std::
 	this->endian = endian;
 }
 
-BinaryWriter::~BinaryWriter() {}
+BinaryWriter::~BinaryWriter() = default;
 
 void BinaryWriter::writeUInt8(uint8_t value)
 {
@@ -64,7 +62,7 @@ void BinaryWriter::writeUInt32(uint32_t value)
 	}
 }
 
-void BinaryWriter::writeString(std::string value)
+void BinaryWriter::writeString(const std::string& value)
 {
 	const char *c = value.c_str();
 	while (*c)
@@ -77,9 +75,9 @@ void BinaryWriter::writeString(std::string value)
 	pos++;
 }
 
-void BinaryWriter::writeBytes(uint8_t *value, int length)
+[[maybe_unused]] void BinaryWriter::writeBytes(const uint8_t *value, const int valueLength)
 {
-	for (int i = 0; i < length; i++)
+	for (int i = 0; i < valueLength; i++)
 	{
 		*pos = value[i];
 		pos++;
@@ -91,7 +89,7 @@ int BinaryWriter::getPosition()
 	return pos - head;
 }
 
-int BinaryWriter::getLength()
+[[maybe_unused]] int BinaryWriter::getLength() const
 {
 	return length;
 }

@@ -1,15 +1,14 @@
 #include <string>
 #include <iostream>
+#include <utility>
 #include "preamble.hpp"
-#include <iomanip>
 
 Preamble::Preamble()
-{
-}
+= default;
 
 Preamble::Preamble(std::string name, DNSRecordType type, uint16_t class_, uint32_t ttl, uint16_t rdlength)
 {
-	this->name = name;
+	this->name = std::move(name);
 	this->type = type;
 	this->class_ = class_;
 	this->ttl = ttl;
@@ -17,8 +16,7 @@ Preamble::Preamble(std::string name, DNSRecordType type, uint16_t class_, uint32
 }
 
 Preamble::~Preamble()
-{
-}
+= default;
 
 void Preamble::print()
 {

@@ -16,5 +16,5 @@ public:
      * @param url
      * @return std::string
      */
-    static std::string getSnippet(std::string url);
+    static std::string getSnippetText(const std::string& url, int maxRedirect = 10);
 };

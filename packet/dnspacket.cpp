@@ -1,20 +1,15 @@
 #include "dnspacket.hpp"
-#include "records/header.hpp"
 #include "records/question.hpp"
 #include "records/answer.hpp"
 #include "records/authority.hpp"
 #include "records/additional.hpp"
-#include "records/preamble.hpp"
 #include "dnspacketutil.hpp"
-#include <list>
 
 DNSPacket::DNSPacket()
-{
-}
+= default;
 
 DNSPacket::~DNSPacket()
-{
-}
+= default;
 
 void DNSPacket::fromBinary(uint8_t *binary, int length)
 {
@@ -33,12 +28,12 @@ void DNSPacket::fromBinary(uint8_t *binary, int length)
 	for (int i = 0; i < header.qdcount; i++)
 	{
 		std::string qname = reader.readString();
-		DNSRecordType qtype = (DNSRecordType)reader.readUInt16();
+		auto qtype = (DNSRecordType)reader.readUInt16();
 		uint16_t qclass = reader.readUInt16();
-		questions.push_back(Question(
+		questions.emplace_back(
 			qname,
 			qtype,
-			qclass));
+			qclass);
 	}
 
 	if (reader.isEOF())
@@ -68,8 +63,6 @@ int DNSPacket::toBinary(uint8_t *binary, int length)
 
 	for (Answer &answer : answers)
 	{
-		//std::string name = "\x06" + std::string(answer.name);
-		//name.replace(name.find("."), 1, 1, '\x03');
 		writer.writeString(questions.front().qname);
 		writer.writeUInt16(answer.type);
 		writer.writeUInt16(answer.class_);

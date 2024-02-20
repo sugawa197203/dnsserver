@@ -9,9 +9,9 @@ class Preamble
 public:
 	std::string name;
 	DNSRecordType type;
-	uint16_t class_;
-	uint32_t ttl;
-	uint16_t rdlength;
+	uint16_t class_{};
+	uint32_t ttl{};
+	uint16_t rdlength{};
 
 	Preamble(std::string name, DNSRecordType type, uint16_t class_, uint32_t ttl, uint16_t rdlength);
 

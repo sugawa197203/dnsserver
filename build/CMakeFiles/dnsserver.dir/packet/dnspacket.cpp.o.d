@@ -1,8 +1,8 @@
 CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o: \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacket.cpp \
+ /mnt/d/workspace/dnsserver/packet/dnspacket.cpp \
  /usr/include/stdc-predef.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/dnspacket.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/header.hpp \
+ /mnt/d/workspace/dnsserver/packet/dnspacket.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/header.hpp \
  /usr/include/x86_64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/x86_64-linux-gnu/bits/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
@@ -14,7 +14,7 @@ CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o: \
  /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
  /usr/include/x86_64-linux-gnu/bits/typesizes.h \
  /usr/include/x86_64-linux-gnu/bits/time64.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/question.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/question.hpp \
  /usr/include/c++/11/string \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -163,27 +163,26 @@ CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/answer.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/preamble.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/authority.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/records/additional.hpp \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/../utils/binaryreader.hpp \
- /usr/include/c++/11/bit /usr/include/byteswap.h \
- /mnt/c/Users/bismu/Projects/dnsserver/packet/../utils/binarywriter.hpp \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
- /usr/include/c++/11/bits/allocated_ptr.h \
- /usr/include/c++/11/ext/aligned_buffer.h \
- /usr/include/c++/11/bits/list.tcc /usr/include/c++/11/memory \
- /usr/include/c++/11/bits/stl_uninitialized.h \
+ /mnt/d/workspace/dnsserver/packet/records/../dnspacketutil.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/answer.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/preamble.hpp \
+ /mnt/d/workspace/dnsserver/packet/records/authority.hpp \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
- /usr/include/c++/11/bits/align.h \
+ /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
  /usr/include/c++/11/bits/uses_allocator.h \
  /usr/include/c++/11/bits/unique_ptr.h /usr/include/c++/11/utility \
  /usr/include/c++/11/bits/stl_relops.h /usr/include/c++/11/tuple \
  /usr/include/c++/11/array /usr/include/c++/11/bits/invoke.h \
  /usr/include/c++/11/bits/shared_ptr.h \
  /usr/include/c++/11/bits/shared_ptr_base.h \
- /usr/include/c++/11/bits/refwrap.h /usr/include/c++/11/ext/concurrence.h \
+ /usr/include/c++/11/bits/allocated_ptr.h \
+ /usr/include/c++/11/bits/refwrap.h \
+ /usr/include/c++/11/ext/aligned_buffer.h \
+ /usr/include/c++/11/ext/concurrence.h \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \
  /usr/include/c++/11/bits/atomic_base.h \
  /usr/include/c++/11/bits/atomic_lockfree_defines.h \
@@ -214,4 +213,10 @@ CMakeFiles/dnsserver.dir/packet/dnspacket.cpp.o: \
  /usr/include/c++/11/bits/stream_iterator.h \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
- /usr/include/c++/11/pstl/execution_defs.h
+ /usr/include/c++/11/pstl/execution_defs.h \
+ /mnt/d/workspace/dnsserver/packet/records/additional.hpp \
+ /mnt/d/workspace/dnsserver/packet/../utils/binaryreader.hpp \
+ /usr/include/byteswap.h \
+ /mnt/d/workspace/dnsserver/packet/../utils/binarywriter.hpp \
+ /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/bits/list.tcc

@@ -24,11 +24,11 @@ public:
 
 	void writeUInt32(uint32_t value);
 
-	void writeString(std::string value);
+	void writeString(const std::string& value);
 
-	void writeBytes(uint8_t *value, int length);
+    [[maybe_unused]] void writeBytes(const uint8_t *value, int valueLength);
 
 	int getPosition();
 
-	int getLength();
+    [[maybe_unused]] [[maybe_unused]] [[nodiscard]] int getLength() const;
 };

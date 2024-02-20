@@ -51,10 +51,7 @@ int main(int argc, const char * argv[]) {
     // å„énññ
     curl_easy_cleanup(curl);
 
-    std::ofstream ofs;
-    ofs.open("tmp.html", std::ios::out);
-    if (ofs.is_open()) {
-        ofs << responseData.data() << std::endl;
-    }
+    std::cout << "Response data: " << std::endl;
+    std::cout << std::string(responseData.begin(), responseData.end()) << std::endl;
     return 0;
 }

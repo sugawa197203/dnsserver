@@ -22,20 +22,20 @@ public:
 
 	~BinaryReader();
 
-	int getLength();
+    [[maybe_unused]] int getLength() const;
 
-	int getPosition();
+    [[maybe_unused]] int getPosition();
 
 	template <typename T>
-	T read();
+    [[maybe_unused]] T read();
 
-	uint8_t readUInt8();
+    [[maybe_unused]] uint8_t readUInt8();
 
 	uint16_t readUInt16();
 
-	uint32_t readUInt32();
+    [[maybe_unused]] uint32_t readUInt32();
 
-	uint64_t readUInt64();
+    [[maybe_unused]] uint64_t readUInt64();
 
 	std::string readString();
 };

@@ -16,7 +16,7 @@ public:
 
 	~Question();
 
-	std::string qNameFormat();
+	[[nodiscard]] std::string qNameFormat() const;
 
-	void print();
+	void print() const;
 };

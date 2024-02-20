@@ -12,6 +12,7 @@ add_executable(dnsserver
 	packet/dnspacket.cpp
 	utils/binaryreader.cpp
 	utils/binarywriter.cpp
-	sitesnippet/sitesnippet.hpp
 	sitesnippet/sitesnippet.cpp
 )
+target_include_directories(dnsserver PRIVATE /usr/local/opt/curl/include)
+target_link_libraries(dnsserver curl)

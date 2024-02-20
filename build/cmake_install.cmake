@@ -1,4 +1,4 @@
-# Install script for directory: /mnt/c/Users/bismu/Projects/dnsserver
+# Install script for directory: /mnt/d/workspace/dnsserver
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/mnt/c/Users/bismu/Projects/dnsserver/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/mnt/d/workspace/dnsserver/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
