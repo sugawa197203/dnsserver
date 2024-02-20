@@ -11,7 +11,7 @@ DNSPacket::DNSPacket()
 DNSPacket::~DNSPacket()
 = default;
 
-void DNSPacket::fromBinary(uint8_t *binary, int length)
+void DNSPacket::fromBinary(uint8_t *binary, ssize_t length)
 {
 	BinaryReader reader(binary, length, std::endian::big);
 
@@ -43,7 +43,7 @@ void DNSPacket::fromBinary(uint8_t *binary, int length)
 		return;
 }
 
-int DNSPacket::toBinary(uint8_t *binary, int length)
+ssize_t DNSPacket::toBinary(uint8_t *binary, ssize_t length)
 {
 	BinaryWriter writer(binary, length, std::endian::big);
 

@@ -14,7 +14,7 @@ bool BinaryReader::isEOF()
 	return pos == head + length;
 }
 
-BinaryReader::BinaryReader(uint8_t *head, int length, std::endian endian = std::endian::big)
+BinaryReader::BinaryReader(uint8_t *head, ssize_t length, std::endian endian = std::endian::big)
 {
 	this->head = head;
 	this->pos = head;
@@ -24,12 +24,12 @@ BinaryReader::BinaryReader(uint8_t *head, int length, std::endian endian = std::
 
 BinaryReader::~BinaryReader() = default;
 
-[[maybe_unused]] int BinaryReader::getLength() const
+[[maybe_unused]] ssize_t BinaryReader::getLength() const
 {
 	return length;
 }
 
-[[maybe_unused]] int BinaryReader::getPosition()
+[[maybe_unused]] ssize_t BinaryReader::getPosition()
 {
 	return pos - head;
 }

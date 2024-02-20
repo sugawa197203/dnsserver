@@ -22,21 +22,21 @@ public:
 
     [[maybe_unused]] [[nodiscard]] uint8_t getOpcode() const;
 
-    [[maybe_unused]] bool getAA() const;
+    [[maybe_unused]] [[nodiscard]] bool getAA() const;
 
-    [[maybe_unused]] bool getTC() const;
+    [[maybe_unused]] [[nodiscard]] bool getTC() const;
 
-    [[maybe_unused]] bool getRD() const;
+    [[maybe_unused]] [[nodiscard]] bool getRD() const;
 
-    [[maybe_unused]] bool getRA() const;
+    [[maybe_unused]] [[nodiscard]] bool getRA() const;
 
-    [[maybe_unused]] bool getZ() const;
+    [[maybe_unused]] [[nodiscard]] bool getZ() const;
 
-    [[maybe_unused]] bool getAD() const;
+    [[maybe_unused]] [[nodiscard]] bool getAD() const;
 
-    [[maybe_unused]] bool getCD() const;
+    [[maybe_unused]] [[nodiscard]] bool getCD() const;
 
-    [[maybe_unused]] uint8_t getRCODE() const;
+    [[maybe_unused]] [[nodiscard]] uint8_t getRCODE() const;
 
 	void setQR(bool qr);
 

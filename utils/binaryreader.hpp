@@ -10,7 +10,7 @@ class BinaryReader
 private:
 	uint8_t *head;
 	uint8_t *pos;
-	int length;
+	ssize_t length;
 	std::endian endian;
 
 	bool isOutOfBounds();
@@ -18,13 +18,13 @@ private:
 public:
 	bool isEOF();
 
-	BinaryReader(uint8_t *head, int length, std::endian endian);
+	BinaryReader(uint8_t *head, ssize_t length, std::endian endian);
 
 	~BinaryReader();
 
-    [[maybe_unused]] int getLength() const;
+    [[maybe_unused]] [[nodiscard]] ssize_t getLength() const;
 
-    [[maybe_unused]] int getPosition();
+    [[maybe_unused]] ssize_t getPosition();
 
 	template <typename T>
     [[maybe_unused]] T read();

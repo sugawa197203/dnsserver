@@ -179,4 +179,5 @@ CMakeFiles/dnsserver.dir/packet/records/answer.cpp.o: \
  /usr/include/x86_64-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
- /usr/include/x86_64-linux-gnu/bits/in.h
+ /usr/include/x86_64-linux-gnu/bits/in.h /usr/include/c++/11/utility \
+ /usr/include/c++/11/bits/stl_relops.h

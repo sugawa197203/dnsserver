@@ -63,7 +63,7 @@ std::string SiteSnippet::getSnippetText(const std::string& url, int maxRedirect)
     std::string nameDescription = "name=\"description\"";
     std::regex contentRegex("content=\"(.*?)\"");
     std::string contentText = "content=\"";
-    while (true) {
+    for(int maxSearch = 256; maxSearch != 0; maxSearch--) {
         std::regex_search(responseDataStr, match, metaRegex);
         std::string meta = match.str();
         std::cerr << "Meta: " << meta << std::endl;
@@ -75,4 +75,6 @@ std::string SiteSnippet::getSnippetText(const std::string& url, int maxRedirect)
         }
         responseDataStr = match.suffix();
     }
+
+    return "";
 }

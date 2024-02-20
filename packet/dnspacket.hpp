@@ -23,9 +23,9 @@ public:
 
 	~DNSPacket();
 
-	void fromBinary(uint8_t *binary, int length);
+	void fromBinary(uint8_t *binary, ssize_t length);
 
-	int toBinary(uint8_t *binary, int length);
+	ssize_t toBinary(uint8_t *binary, ssize_t length);
 
 	void print();
 };

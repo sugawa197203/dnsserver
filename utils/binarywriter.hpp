@@ -10,11 +10,11 @@ class BinaryWriter
 private:
 	uint8_t *head;
 	uint8_t *pos;
-	int length;
+	ssize_t length;
 	std::endian endian;
 
 public:
-	BinaryWriter(uint8_t *head, int length, std::endian endian);
+	BinaryWriter(uint8_t *head, ssize_t length, std::endian endian);
 
 	~BinaryWriter();
 
@@ -28,7 +28,7 @@ public:
 
     [[maybe_unused]] void writeBytes(const uint8_t *value, int valueLength);
 
-	int getPosition();
+	ssize_t getPosition();
 
-    [[maybe_unused]] [[maybe_unused]] [[nodiscard]] int getLength() const;
+    [[maybe_unused]] [[nodiscard]] ssize_t getLength() const;
 };

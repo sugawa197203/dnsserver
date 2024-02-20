@@ -11,10 +11,10 @@
 #include <vector>
 #include <memory>
 
-void printBinary(uint8_t *binary, int length)
+void printBinary(uint8_t *binary, ssize_t length)
 {
     std::cout << "---------- binary ----------" << std::endl;
-	for (int i = 0; i < length; i++)
+	for (ssize_t i = 0; i < length; i++)
 	{
 		printf("%02x ", binary[i]);
 		if (i % 8 == 7)
@@ -48,8 +48,7 @@ private:
 
 		for (Question &question : packet->questions)
 		{
-            std::cerr << (question.qtype == DNSRecordType::A ? "A record" : "AAAA or another record") << std::endl;
-            if (question.qtype != DNSRecordType::A)
+            if (question.qtype == DNSRecordType::AAAA)
             {
                 std::cerr << "Not supported qtype : " << question.qtype << std::endl;
                 continue;
@@ -83,7 +82,7 @@ public:
 
 		bzero((char *)&addr, sizeof(addr));
 		addr.sin_family = AF_INET;
-		addr.sin_port = htons(port);
+		addr.sin_port = htons(this->port);
 		addr.sin_addr.s_addr = INADDR_ANY;
 
 		if (bind(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0)
@@ -153,7 +152,7 @@ public:
 
         snippet = '\x03' + snippet;
         std::shared_ptr<std::vector<uint8_t>> RDATA = std::make_shared<std::vector<uint8_t>>(snippet.begin(), snippet.end());
-        Additional additional(res.answers.front().name, DNSRecordType::TXT, 1, 0, snippet.size(), RDATA);
+        Additional additional(res.questions.front().qname, DNSRecordType::TXT, 1, 0, snippet.size(), RDATA);
         res.additionals.push_back(additional);
         res.header.arcount = res.additionals.size();
 
@@ -169,9 +168,6 @@ public:
 		}
 
 		printBinary(binary.data(), length);
-
-
-
     }
 };
 
@@ -192,5 +188,4 @@ int main()
 
         server.res(packet);
     }
-	return 0;
 }

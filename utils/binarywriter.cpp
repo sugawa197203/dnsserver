@@ -2,7 +2,7 @@
 #include <bit>
 #include "binarywriter.hpp"
 
-BinaryWriter::BinaryWriter(uint8_t *head, int length, std::endian endian = std::endian::big)
+BinaryWriter::BinaryWriter(uint8_t *head, ssize_t length, std::endian endian = std::endian::big)
 {
 	this->head = head;
 	this->pos = head;
@@ -84,12 +84,12 @@ void BinaryWriter::writeString(const std::string& value)
 	}
 }
 
-int BinaryWriter::getPosition()
+ssize_t BinaryWriter::getPosition()
 {
 	return pos - head;
 }
 
-[[maybe_unused]] int BinaryWriter::getLength() const
+[[maybe_unused]] ssize_t BinaryWriter::getLength() const
 {
 	return length;
 }

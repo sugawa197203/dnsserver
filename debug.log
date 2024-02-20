@@ -1,0 +1,23 @@
+A record
+Status code: 301
+Max redirect: 10
+Redirect to: https://zenn.dev/
+Status code: 200
+Max redirect: 9
+Meta: <meta charSet="utf-8"/>
+Meta: <meta content="width=device-width, initial-scale=1" name="viewport"/>
+Meta: <meta name="description" content="Zennはエンジニアが技術・開発についての知見をシェアする場所です。本の販売や、読者からのバッジの受付により対価を受け取ることができます。"/>
+A record
+Status code: 301
+Max redirect: 10
+Redirect to: https://zenn.dev/
+Status code: 200
+Max redirect: 9
+Meta: <meta charSet="utf-8"/>
+Meta: <meta content="width=device-width, initial-scale=1" name="viewport"/>
+Meta: <meta name="description" content="Zennはエンジニアが技術・開発についての知見をシェアする場所です。本の販売や、読者からのバッジの受付により対価を受け取ることができます。"/>
+AAAA or another record
+Not supported qtype : 16
+curl_easy_perform() failed: URL using bad/illegal format or missing URL
+terminate called after throwing an instance of 'std::bad_alloc'
+  what():  std::bad_alloc
