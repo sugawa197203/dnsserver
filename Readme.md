@@ -3,5 +3,5 @@
 * libcurl
 
 ```
-sudo apt-get install libcurl-dev
+sudo apt install libcurl4-openssl-dev
 ```
