@@ -158,7 +158,7 @@ public:
 
 		res.print();
 
-		std::array<uint8_t, 1024> binary{};
+		std::array<uint8_t, 1024> binary;
 		int length = res.toBinary(binary.data(), binary.size());
 
 		if (sendto(sock, binary.data(), length, 0, (struct sockaddr *)&addr, addr_len) < 0)
