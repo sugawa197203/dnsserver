@@ -10,6 +10,7 @@
 #include <netdb.h>
 #include <vector>
 #include <memory>
+#include <array>
 
 void printBinary(uint8_t *binary, ssize_t length)
 {
@@ -150,7 +151,7 @@ public:
         std::cout << snippet << std::endl;
         std::cout << "#################### END SNIPPET ####################" << std::endl;
 
-        snippet = '\x03' + snippet;
+        snippet = snippet.substr(0, 255);
         std::shared_ptr<std::vector<uint8_t>> RDATA = std::make_shared<std::vector<uint8_t>>(snippet.begin(), snippet.end());
         Additional additional(res.questions.front().qname, DNSRecordType::TXT, 1, 0, snippet.size(), RDATA);
         res.additionals.push_back(additional);
@@ -158,7 +159,7 @@ public:
 
 		res.print();
 
-		std::array<uint8_t, 1024> binary;
+		std::array<uint8_t, 1024> binary{};
 		int length = res.toBinary(binary.data(), binary.size());
 
 		if (sendto(sock, binary.data(), length, 0, (struct sockaddr *)&addr, addr_len) < 0)
