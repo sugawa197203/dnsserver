@@ -1,3 +1,0 @@
-/mnt/d/workspace/dnsserver/build/CMakeFiles/dnsserver.dir
-/mnt/d/workspace/dnsserver/build/CMakeFiles/edit_cache.dir
-/mnt/d/workspace/dnsserver/build/CMakeFiles/rebuild_cache.dir
