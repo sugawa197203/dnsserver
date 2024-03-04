@@ -4,6 +4,7 @@
 #include <string>
 #include <bit>
 #include <byteswap.h>
+#include <cstdint>
 
 class BinaryWriter
 {
