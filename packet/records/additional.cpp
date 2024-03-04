@@ -8,6 +8,11 @@ Additional::Additional(std::string name, DNSRecordType type, uint16_t class_, ui
     this->RDATA = std::move(RDATA);
 }
 
+Additional::Additional()
+    : Preamble()
+{
+}
+
 void Additional::print()
 {
     std::cout << "---------- Additional ----------" << std::endl;

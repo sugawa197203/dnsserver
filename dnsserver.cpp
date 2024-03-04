@@ -121,40 +121,56 @@ public:
 
 	void res(const std::shared_ptr<DNSPacket>& packet)
 	{
-		std::list<std::shared_ptr<hostent>> hosts = getHost(packet);
+        DNSPacket res;
+        std::list<std::shared_ptr<hostent>> hosts;
+        std::string snippet;
+        std::shared_ptr<std::vector<uint8_t>> RDATA;
+        Additional additional;
+        res.header = packet->header;
+        res.header.setQR(true);
+        res.header.setRD(false);
 
-		DNSPacket res;
-		res.header = packet->header;
-		res.header.setQR(true);
-		res.header.setRD(false);
+        res.header.qdcount = packet->header.qdcount;
 
-		res.header.qdcount = packet->header.qdcount;
+        res.questions = packet->questions;
 
-		res.questions = packet->questions;
+        switch (packet->questions.front().qtype) {
+            case DNSRecordType::A:
+                hosts = getHost(packet);
 
-		for (std::shared_ptr<hostent> &host : hosts)
-		{
-            for (int i = 0; host->h_addr_list[i] != nullptr; i++)
-            {
-                std::string name = host->h_name;
-                uint32_t IP = *(uint32_t *)host->h_addr_list[i];
-                res.answers.emplace_back(name, DNSRecordType::A, 1, 0, 4, IP);
-            }
-		}
+                for (std::shared_ptr<hostent> &host : hosts)
+                {
+                    for (int i = 0; host->h_addr_list[i] != nullptr; i++)
+                    {
+                        std::string name = host->h_name;
+                        uint32_t IP = *(uint32_t *)host->h_addr_list[i];
+                        res.answers.emplace_back(name, DNSRecordType::A, 1, 0, 4, IP);
+                    }
+                }
 
-        res.header.ancount = res.answers.size();
+                res.header.ancount = res.answers.size();
+                break;
+            case DNSRecordType::TXT:
+                std::cout << "#################### SNIPPET ####################" << std::endl;
+                snippet = SiteSnippet::getSnippetText(res.questions.front().qNameFormat());
+                std::cout << "-------------------- SNIPPET --------------------" << std::endl;
+                std::cout << snippet << std::endl;
+                std::cout << "#################### END SNIPPET ####################" << std::endl;
 
-        std::cout << "#################### SNIPPET ####################" << std::endl;
-        std::string snippet = SiteSnippet::getSnippetText(res.answers.front().name);
-        std::cout << "-------------------- SNIPPET --------------------" << std::endl;
-        std::cout << snippet << std::endl;
-        std::cout << "#################### END SNIPPET ####################" << std::endl;
+                if (snippet.size() >= 255)
+                {
+                    snippet = snippet.substr(0, 255);
+                }
 
-        snippet = '\x03' + snippet;
-        std::shared_ptr<std::vector<uint8_t>> RDATA = std::make_shared<std::vector<uint8_t>>(snippet.begin(), snippet.end());
-        Additional additional(res.questions.front().qname, DNSRecordType::TXT, 1, 0, snippet.size(), RDATA);
-        res.additionals.push_back(additional);
-        res.header.arcount = res.additionals.size();
+                RDATA = std::make_shared<std::vector<uint8_t>>(snippet.begin(), snippet.end());
+                additional = Additional(res.questions.front().qNameFormat(), DNSRecordType::TXT, 1, 0, snippet.size(), RDATA);
+                res.additionals.push_back(additional);
+                res.header.arcount = res.additionals.size();
+                break;
+            default:
+                std::cerr << "Not supported qtype : " << packet->questions.front().qtype << std::endl;
+                break;
+        }
 
 		res.print();
 

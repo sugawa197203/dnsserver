@@ -90,7 +90,17 @@ ssize_t DNSPacket::toBinary(uint8_t *binary, ssize_t length)
         writer.writeUInt16(additional.type);
         writer.writeUInt16(additional.class_);
         writer.writeUInt32(additional.ttl);
-        writer.writeUInt16(additional.rdlength);
+
+        if (additional.type == DNSRecordType::TXT)
+        {
+            writer.writeUInt16(additional.rdlength + 1);
+            writer.writeUInt8(additional.RDATA->size());
+        }
+        else
+        {
+            writer.writeUInt16(additional.rdlength);
+        }
+
         for (auto byte : *additional.RDATA)
         {
             writer.writeUInt8(byte);
